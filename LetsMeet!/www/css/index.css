@@ -43,20 +43,16 @@ a, a *{
 }
 span.icon{font-family:'FontAwesome';}
 
-h1,h2,h3,h4 {
-	font-weight: 600;
-}
-h1{ font-size: 22px; color:  #684941;  font-weight: 800; }
-h2{ font-size: 20px; color:  #684941; font-family: 'Raleway', sans-serif; font-weight: 800;  }
-h3{ font-size: 18px; color:  #684941; font-family: 'Raleway', sans-serif; font-weight: 800;  }
-h4{ font-size: 16px; color:  #684941; font-family: 'Raleway', sans-serif; font-weight: 800;   }
 
 body {
 	background: #f3f3f3;
-	
-	font-family: "Lato", arial, verdana;
-	font-size: 16px;
+	font-family: arial, verdana;
 }
+
+h1{ font-size: 26px; color:  #684941; font-weight: bold; }
+h2{ font-size: 22px; color:  #684941; font-weight: bold; }
+h3{ font-size: 18px; color:  #684941; font-weight: bold; }
+h4{ font-size: 14px; color:  #684941; font-weight: bold; }
 
 .error					{background: #ffbaba; border: 1px solid #d8000c; color: #d8000c; padding: 15px; margin-bottom: 20px;}
 .succes					{background: #dff2bf; border: 1px solid #4f8a10; color: #4f8a10; padding: 15px; margin-bottom: 20px;} 
@@ -89,6 +85,7 @@ header h1 {
 	padding: 12px 10px; 
 	color: #fff; 
 	font-size: 22px;
+	font-weight: normal
 }
 header .btnGroup {
 	float: left;
@@ -137,7 +134,6 @@ header nav li a:hover {
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 	text-decoration: none;
-	font-style: italic;
 	line-height: 18px;
 }
 #container .btn:hover {
@@ -205,7 +201,7 @@ header nav li a:hover {
 }
 #container form .btn {
 	display: block;
-	font-family: "open sans", arial, verdana; 
+	font-family: arial, verdana; 
 	font-size: 16px;
 	color: #fff;
 	background: #7c584c;
@@ -217,18 +213,7 @@ header nav li a:hover {
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
-#container .profileInfo {
-	overflow: hidden;
-}
-#container .profileInfo h4 {
-	float: left;
-}
-#container .profileInfo .iconRight {
-	float: right;
-	text-decoration: none;
-	color: #7c584c;
-	margin-left: 15px;
-}
+
 #container form input.custom-file-input {
 	display: block;
 	font-family: "open sans", arial, verdana; 
