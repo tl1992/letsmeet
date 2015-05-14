@@ -19,97 +19,253 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
-
-body {
-    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
-    height:100%;
-    margin:0px;
-    padding:0px;
-    text-transform:uppercase;
-    width:100%;
+a, a *{
+  -o-transition:.3s;
+  -ms-transition:.3s;
+  -moz-transition:.3s;
+  -webkit-transition:.3s;
+  /* ...and now for the proper property */
+  transition:.3s;
 }
 
-/* Portrait layout (default) */
-.app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
+@charset "utf-8";
+/* Structure CSS */
+
+@font-face {
+	font-family:'FontAwesome';
+	src:url('font/fontawesome-webfont.eot?v=4.0.3');
+	src:url('font/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'),
+		url('font/fontawesome-webfont.woff?v=4.0.3') format('woff'),
+		url('font/fontawesome-webfont.ttf?v=4.0.3') format('truetype'),
+		url('font/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+	font-weight:normal;
+	font-style:normal;
+}
+span.icon{font-family:'FontAwesome';}
+
+h1,h2,h3,h4 {
+	font-weight: 600;
+}
+h1{ font-size: 22px; color:  #684941;  font-weight: 800; }
+h2{ font-size: 20px; color:  #684941; font-family: 'Raleway', sans-serif; font-weight: 800;  }
+h3{ font-size: 18px; color:  #684941; font-family: 'Raleway', sans-serif; font-weight: 800;  }
+h4{ font-size: 16px; color:  #684941; font-family: 'Raleway', sans-serif; font-weight: 800;   }
+
+body {
+	background: #f3f3f3;
+	
+	font-family: "Lato", arial, verdana;
+	font-size: 16px;
+}
+
+.error					{background: #ffbaba; border: 1px solid #d8000c; color: #d8000c; padding: 15px; margin-bottom: 20px;}
+.succes					{background: #dff2bf; border: 1px solid #4f8a10; color: #4f8a10; padding: 15px; margin-bottom: 20px;} 
+
+a {
+	color: #7c584c;
+}
+a:hover {
+	text-decoration: none;
+}
+
+.clear{ clear:both;}
+.thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+header {
+	background: #7c584c;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 999;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.4);
+	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.4);
+	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.4);
+}
+header h1 {
+	display: inline-block;
+	padding: 12px 10px; 
+	color: #fff; 
+	font-size: 22px;
+}
+header .btnGroup {
+	float: left;
+}
+header .btnGroup a.btn {
+	border-right: 1px solid #684941; 
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+	padding: 15px;
+}
+header nav {
+	background: #fff;
+	display: none;
+}
+header nav span {
+	padding: 15px 20px;
+	text-decoration: none;
+	color: #000;
+}
+header nav span {
+	display: inline-block;
+	width: 25px;
+}
+header nav li a:hover {
+	background: #e9e9e9;
+} 
+
+#container {
+	width: 640px;
+	margin: 70px auto 0;
+	
+}
+#container .btn {
+	display: block;
+	font-size: 16px;
+	color: #fff;
+	background: #7c584c;
+	border: 0;
+	width: auto;
+	padding:10px 0px;
+	margin-top: 5px;
+	text-align: center;
+	width: auto;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	text-decoration: none;
+	font-style: italic;
+	line-height: 18px;
+}
+#container .btn:hover {
+	background: #684941;
+}
+#container .block {
+	background: #fff;
+	padding: 15px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 20px;
+	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow:    0px 0px 3px 0px rgba(0, 0, 0, 0.05);
+	box-shadow:         0px 0px 3px 0px rgba(0, 0, 0, 0.05);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+#container .block  h2 {
+	margin: 10px 0px;
+}
+#container .block  p {
+	line-height: 24px;
+}
+#container .block  p.meta {
+	font-size: 12px;
+	color: #bcbcbc;
+}
+#container .block  p.margin {
+	margin: 10px 0px;
+}
+#container .block p.meta span a {
+	text-decoration: none;
+	color: #bcbcbc;
+}
+#container .block p.meta span a:hover {
+	text-decoration: underline;
+}
+#container .block  p.meta span {
+	padding-right: 10px;
+}
+#container .block  p.meta span.icon {
+	padding-right: 5px;
+}
+#container .info ul li {
+	margin: 15px 0px;
+	overflow: hidden;
+	line-height: 45px;
+}
+#container .info ul li img {
+	margin-right: 10px;
+}
+#container .info a {
+	font-weight: bold;
+}
+#container form input {
+	display: block;
+	padding: 3% 2%;
+	width: 96%;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	margin-bottom: 15px;
+}
+#container form .btn {
+	display: block;
+	font-family: "open sans", arial, verdana; 
+	font-size: 16px;
+	color: #fff;
+	background: #7c584c;
+	border: 0;
+	width: auto;
+	padding:10px 0px;
+	width: 100%;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+#container .profileInfo {
+	overflow: hidden;
+}
+#container .profileInfo h4 {
+	float: left;
+}
+#container .profileInfo .iconRight {
+	float: right;
+	text-decoration: none;
+	color: #7c584c;
+	margin-left: 15px;
+}
+#container form input.custom-file-input {
+	display: block;
+	font-family: "open sans", arial, verdana; 
+	font-size: 16px;
+	color: #fff;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 100%;
+} 
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Selecteer een Photo Sphere';
+  display: inline-block;
+  background: #7c584c;
+  border-radius: 2px;
+	padding:10px 0px;
+	width: 100%;
+	text-align: center;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+
+
+/* CSS for Mobile 600px and below */
+@media (max-width: 640px) {
+	#container {	
+		width: auto;
+	}
 }
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
-}
 
-h1 {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
-}
-
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
-}
-
-.event.listening {
-    background-color:#333333;
-    display:block;
-}
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
 }
