@@ -15,7 +15,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	
 	// Query the success callback
 	function querySuccess(tx, results) {
-		console.log("Returned rows = " + results.rows.length);
+	
+		var haveRows= results.rows.length;
 		
 		var getName = document.getElementById('myName');
 		var resultName= results.rows.item(0).name;
@@ -25,6 +26,16 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		var resultPhone= results.rows.item(0).phone;
 		getPhone.innerHTML = resultPhone;
 		
+		if(haveRows == 1){
+			$('#login').hide();
+			
+			
+		}else{
+			$('#user').hide();
+			$('#invite').hide();
+			$('#map').hide();
+		}
+
 		// this will be true since it was a select statement and so rowsAffected was 0
 		if (!results.rowsAffected) {
 			console.log('No rows affected!');

@@ -45,24 +45,34 @@
 		
 		<div id="container">
 		
-			<article class="block info">
+			<article id="user" class="block info">
 				<h1>Mijn Account</h1>
                 <p id="myName"></p>
                 <p id="myPhone"></p>
 			</article>
             
-			<article class="block info">
+            <article id="login" class="block info">
+				<h1>Aanmelden</h1>
+				<form method="post" id="loginForm">
+					<input type="tekst" name="login_name" placeholder="Naam" />
+					<input type="tekst" name="login_phone" placeholder="Telefoon" />
+					<input type="submit" class="btn" value="Aanmelden" />
+				</form>
+
+			</article>
+            
+			<article id="invite" class="block info">
 				<h1>Maak een afspraak</h1>
                 
 				<form>
 					<input type="tekst" placeholder="Naam" />
-					<input type="tekst" placeholder="Email" />
+					<input type="tekst" placeholder="Telefoon" />
 					<input type="submit" class="btn" value="Uitnodiging versturen" />
 				</form>
 
 			</article>
             
-            <article class="block info">
+            <article id="map" class="block info">
 				<h1>Locatie (Demo)</h1>
 				<a class="btn" onclick="callToLocationpage()">Button naar locatiedemo (laten staan)</a>
 			</article>
