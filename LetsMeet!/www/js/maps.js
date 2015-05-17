@@ -18,7 +18,7 @@ function initialize() {
 		 var request = {
 			location: pyrmont,
 			radius: 500,
-			types: ['store']
+			types: ['restaurant']
 		  };
 
 		  placesList = document.getElementById('places');
