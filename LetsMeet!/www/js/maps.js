@@ -6,38 +6,38 @@ function onSuccess(position) {
    var secheltLoc = new google.maps.LatLng(current_lat, current_lng);
 
  var myMapOptions = {
-   zoom: 16
-   ,center: secheltLoc
-   ,mapTypeId: google.maps.MapTypeId.HYBRID
+   zoom: 16,
+   center: secheltLoc,
+   mapTypeId: google.maps.MapTypeId.HYBRID
  };
  var theMap = new google.maps.Map(document.getElementById("map_canvas"), myMapOptions);
  var image = "img/map_pin.png"
  var marker = new google.maps.Marker({
  map: theMap,
  draggable: false,
- position: new google.maps.LatLng(latitude, longitude),
+ position: new google.maps.LatLng(current_lat, current_lng),
  visible: true,
  icon: image,
  title:'Title' // Title
 });
 
  var myOptions = {
-  content: ""
- ,disableAutoPan: false
- ,maxWidth: 0
- ,pixelOffset: new google.maps.Size(-140, -110)
- ,pixelOffset: new google.maps.Size(140, 110)
- ,zIndex: null
- ,boxStyle: { 
-  background: "url('tipbox.gif') no-repeat"
-  ,opacity: 0.90
- }
- ,closeBoxMargin: "10px 2px 2px 2px"
- ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
- ,infoBoxClearance: new google.maps.Size(1, 1)
- ,isHidden: false
- ,pane: "floatPane"
- ,enableEventPropagation: false
+	  content: "",
+	  disableAutoPan: false,
+	  maxWidth: 0,
+	  pixelOffset: new google.maps.Size(-140, -110),
+	  pixelOffset: new google.maps.Size(140, 110),
+	  zIndex: null,
+	  boxStyle: { 
+		  background: "url('tipbox.gif') no-repeat",
+		  opacity: 0.90
+	 },
+	 closeBoxMargin: "10px 2px 2px 2px",
+	 closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+	 infoBoxClearance: new google.maps.Size(1, 1),
+	 isHidden: false,
+	 pane: "floatPane",
+	 enableEventPropagation: false
  };
 
  var contentString = '<div class="map_anotaion_title">Yor Content</div>'; //Address on pin click
