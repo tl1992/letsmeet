@@ -13,35 +13,16 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		tx.executeSql('SELECT * FROM USERDATA', [], querySuccess, errorCB);
 	}
 	
-	// Query the success callback
 	function querySuccess(tx, results) {
-	
-		var haveRows= results.rows.length;
-		
-		var getName = document.getElementById('myName');
-		var resultName= results.rows.item(0).name;
-		getName.innerHTML = resultName;
-		
-		var getPhone = document.getElementById('myPhone');
-		var resultPhone= results.rows.item(0).phone;
-		getPhone.innerHTML = resultPhone;
-		
-		if(haveRows == 1){
-			$('#login').hide();
-			
-			
-		}else{
-			$('#user').hide();
-			$('#invite').hide();
-			$('#map').hide();
-		}
-
-		// this will be true since it was a select statement and so rowsAffected was 0
-		if (!results.rowsAffected) {
+  		console.log("Returned rows = " + results.rows.length);
+  		// this will be true since it was a select statement and so rowsAffected was 0
+	  	if (!results.rowsAffected) {
 			console.log('No rows affected!');
 			return false;
-		}
-	}
+	  	}
+  		// for an insert statement, this property will return the ID of the last inserted row
+  		console.log("Last inserted row ID = " + results.insertId);
+    }
 	
 	// Transaction error callback
 		function errorCB(err) {

@@ -46,26 +46,41 @@
 		</header>
 		
 		<div id="container">
-            <article id="login" class="block info">
-				<h1>Aanmelden</h1>
-				<form id="loginForm">
-					<input type="tekst" name="login_name" placeholder="Naam" />
-					<input type="tekst" name="login_phone" placeholder="Telefoon" />
-					<!--<input id="loginBtn" name="login" type="submit" class="btn" value="Aanmelden" />-->
-				</form>
-                <a class="btn" onclick="callTodashboardpage()">Aanmelden</a>
+		
+			<article id="user" class="block info">
+				<h1>Mijn Account</h1>
+                <p id="myName"></p>
+                <p id="myPhone"></p>
 			</article>
+            
+			<article id="invite" class="block info">
+				<h1>Maak een afspraak</h1>
+
+				<form id="inviteForm">
+					<input type="tekst" id="inviteName" placeholder="Naam" />
+					<input type="tekst" id="invitePhone" placeholder="Telefoon" />
+					<input id="submitButton" type="submit" class="btn" value="Uitnodiging versturen" />
+				</form>
+
+			</article>
+            
+            <article id="map" class="block info">
+				<h1>Locatie (Demo)</h1>
+				<a class="btn" onclick="callToLocationpage()">Button naar locatiedemo (laten staan)</a>
+			</article>
+			
 		</div>
 
+	
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        
+        <script type="text/javascript" src="js/dashboard.js"></script>
         <script type="text/javascript">
             app.initialize();
 			
-			function callTodashboardpage(){
-            	window.location = "dashboard.html";
-            }
+			function callToLocationpage()
+             {
+                window.location = "locatiedemo.html";
+             }
         </script>
     </body>
 </html>
