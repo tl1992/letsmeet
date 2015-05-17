@@ -28,9 +28,7 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 		<link rel="stylesheet" type="text/css" href="css/reset.css" /> 
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
         <title>Hello World</title>
     </head>
@@ -56,12 +54,12 @@
 			<article id="invite" class="block info">
 				<h1>Maak een afspraak</h1>
 
-				<form id="inviteForm">
-					<input type="tekst" id="inviteName" placeholder="Naam" />
-					<input type="tekst" id="invitePhone" placeholder="Telefoon" />
-					<input id="submitButton" type="submit" class="btn" value="Uitnodiging versturen" />
-				</form>
-
+                <form name="invitation" action="" onsubmit="return inviteForm()" method="post">
+                    <input type="text" name="fname" placeholder="Naam">
+                    <input type="text" name="fphone" placeholder="Telefoon">
+                    <input type="submit" class="btn" value="Uitnodiging versturen">
+                </form>
+                
 			</article>
             
             <article id="map" class="block info">
@@ -76,6 +74,15 @@
         <script type="text/javascript" src="js/dashboard.js"></script>
         <script type="text/javascript">
             app.initialize();
+			
+			function inviteForm() {
+				var name = document.forms["invitation"]["fname"].value;
+				var phone = document.forms["invitation"]["fphone"].value;
+				if (name == null || phone == "") {
+					alert("Vul een naam en telefoon nummer in");
+				}
+				return false;
+			}
 			
 			function callToLocationpage()
              {
