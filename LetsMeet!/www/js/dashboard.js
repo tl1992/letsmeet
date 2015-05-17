@@ -3,6 +3,23 @@ var myPhone = localStorage.getItem("phone");
 document.getElementById("myName").innerHTML = myName;
 document.getElementById("myPhone").innerHTML = myPhone;
 
+function checkForInvites() {
+	var myName = localStorage.getItem("name");
+	var myPhone = localStorage.getItem("phone");
+	
+	$.ajax({
+		type: "GET",
+		url: "http://dannycoenen.nl/app/letsmeet/check.php?name=" + myName + "&phone=" + myPhone,
+		dataType: "json",
+		success: function(data) {
+			alert(data);
+		},
+		error: function(data) {
+			alert("ERROR");
+		}
+	});
+}
+
 function inviteForm() {
 	var myName = localStorage.getItem("name");
 	var myPhone = localStorage.getItem("phone");
@@ -20,7 +37,6 @@ function inviteForm() {
 		url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + secName + "&secPhone=" + secPhone,
 		dataType: "json",
 		success: function(data) {
-			// data will contain var1 and var2
 			alert(data);
 		},
 		error: function(data) {

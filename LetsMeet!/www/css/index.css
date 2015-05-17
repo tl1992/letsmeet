@@ -97,6 +97,16 @@ header .btnGroup a.btn {
 	text-decoration: none;
 	padding: 15px;
 }
+header .btnGroupRight {
+	float: right;
+}
+header .btnGroupRight a.btn {
+	border-left: 1px solid #684941; 
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+	padding: 15px;
+}
 header nav {
 	background: #fff;
 	display: none;
