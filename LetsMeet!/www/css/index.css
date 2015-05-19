@@ -49,10 +49,10 @@ body {
 	font-family: arial, verdana;
 }
 
-h1{ font-size: 26px; color:  #684941; font-weight: bold; }
-h2{ font-size: 22px; color:  #684941; font-weight: bold; }
-h3{ font-size: 18px; color:  #684941; font-weight: bold; }
-h4{ font-size: 14px; color:  #684941; font-weight: bold; }
+h1{ font-size: 26px; color:  #684941; font-weight: bold; margin-bottom: 10px; }
+h2{ font-size: 22px; color:  #684941; font-weight: bold; margin-bottom: 10px; }
+h3{ font-size: 18px; color:  #684941; font-weight: bold; margin-bottom: 10px; }
+h4{ font-size: 14px; color:  #684941; font-weight: bold; margin-bottom: 10px; }
 
 .error					{background: #ffbaba; border: 1px solid #d8000c; color: #d8000c; padding: 15px; margin-bottom: 20px;}
 .succes					{background: #dff2bf; border: 1px solid #4f8a10; color: #4f8a10; padding: 15px; margin-bottom: 20px;} 
@@ -82,20 +82,21 @@ header {
 }
 header h1 {
 	display: inline-block;
-	padding: 12px 10px; 
+	padding: 18px 10px;  
 	color: #fff; 
-	font-size: 22px;
-	font-weight: normal
+	font-size: 18px;
+	font-weight: normal;
+	 margin-bottom: 0px;
 }
 header .btnGroup {
 	float: left;
 }
 header .btnGroup a.btn {
-	border-right: 1px solid #684941; 
 	color: #fff;
 	display: inline-block;
 	text-decoration: none;
-	padding: 15px;
+	padding: 18px 10px 16px 18px;
+	font-size: 20px
 }
 header .btnGroupRight {
 	float: right;
