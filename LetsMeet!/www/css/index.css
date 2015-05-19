@@ -49,16 +49,16 @@ body {
 	font-family: arial, verdana;
 }
 
-h1{ font-size: 26px; color:  #684941; font-weight: bold; margin-bottom: 10px; }
-h2{ font-size: 22px; color:  #684941; font-weight: bold; margin-bottom: 10px; }
-h3{ font-size: 18px; color:  #684941; font-weight: bold; margin-bottom: 10px; }
-h4{ font-size: 14px; color:  #684941; font-weight: bold; margin-bottom: 10px; }
+h1{ font-size: 26px; color:  #007a6f; font-weight: bold; margin-bottom: 10px; }
+h2{ font-size: 22px; color:  #007a6f; font-weight: bold; margin-bottom: 10px; }
+h3{ font-size: 18px; color:  #007a6f; font-weight: bold; margin-bottom: 10px; }
+h4{ font-size: 14px; color:  #007a6f; font-weight: bold; margin-bottom: 10px; }
 
 .error					{background: #ffbaba; border: 1px solid #d8000c; color: #d8000c; padding: 15px; margin-bottom: 20px;}
 .succes					{background: #dff2bf; border: 1px solid #4f8a10; color: #4f8a10; padding: 15px; margin-bottom: 20px;} 
 
 a {
-	color: #7c584c;
+	color: #00796b;
 }
 a:hover {
 	text-decoration: none;
@@ -71,15 +71,15 @@ a:hover {
     margin: 10px 5px 0 0;
   }
 header {
-	background: #7c584c;
+	background: #00796b;
 	position: fixed;
 	width: 100%;
 	top: 0;
 	z-index: 999;
-	-webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.4);
-	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.4);
-	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.4);
-	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
+	-moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.6);
+	box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.6);
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
 	height: 55px;
 }
 header h1 {
@@ -104,11 +104,10 @@ header .btnGroupRight {
 	float: right;
 }
 header .btnGroupRight a.btn {
-	border-left: 1px solid #684941; 
 	color: #fff;
 	display: inline-block;
 	text-decoration: none;
-	padding: 15px;
+	padding: 18px 18px 16px 18px;
 }
 header nav {
 	background: #fff;
@@ -136,7 +135,7 @@ header nav li a:hover {
 	display: block;
 	font-size: 16px;
 	color: #fff;
-	background: #7c584c;
+	background: #00796b;
 	border: 0;
 	width: auto;
 	padding:10px 0px;
@@ -150,7 +149,7 @@ header nav li a:hover {
 	line-height: 18px;
 }
 #container .btn:hover {
-	background: #684941;
+	background: #007a6f;
 }
 #container .block {
 	background: #fff;
@@ -217,7 +216,7 @@ header nav li a:hover {
 	font-family: arial, verdana; 
 	font-size: 16px;
 	color: #fff;
-	background: #7c584c;
+	background: #00796b;
 	border: 0;
 	width: auto;
 	padding:10px 0px;
@@ -243,7 +242,7 @@ header nav li a:hover {
 .custom-file-input::before {
   content: 'Selecteer een Photo Sphere';
   display: inline-block;
-  background: #7c584c;
+  background: #00796b;
   border-radius: 2px;
 	padding:10px 0px;
 	width: 100%;
