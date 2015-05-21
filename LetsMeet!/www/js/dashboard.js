@@ -5,7 +5,7 @@ var myPhone = localStorage.getItem("phone");
 document.getElementById("myName").innerHTML = myName;
 document.getElementById("myPhone").innerHTML = myPhone;
 
-
+// Controleer elke 5 seconden op uitnodigingen
 setInterval(function(){
 	$.ajax({
 	type: "GET",
@@ -23,20 +23,7 @@ setInterval(function(){
 	});
 },5000);
 
-	$.ajax({
-	type: "GET",
-	url: "http://dannycoenen.nl/app/letsmeet/check.php?name=" + myName + "&phone=" + myPhone,
-	dataType: "json",
-	success: function(data) {
-		var notifications = data.length;
-		$('<div id="count"></div>').insertAfter('#notification');
-		document.getElementById("count").innerHTML = notifications;
-	},
-	error: function(data) {
-		//alert("ERROR");
-	}
-	});
-
+// Functie voor het controleren op uitnodigingen
 function checkForInvites() {
 	var myName = localStorage.getItem("name");
 	var myPhone = localStorage.getItem("phone");
@@ -57,6 +44,7 @@ function checkForInvites() {
 	});
 }
 
+// Functie voor het versturen van uitnodigingen
 function inviteForm() {
 	var myName = localStorage.getItem("name");
 	var myPhone = localStorage.getItem("phone");
@@ -83,3 +71,22 @@ function inviteForm() {
 	
 	return false;
 }
+
+// Inladen van contacten
+/*var options = new ContactFindOptions();
+options.filter="";
+options.multiple=true; 
+var fields = ["*"];
+navigator.contacts.find(fields, onSuccess, onError, options);
+
+function onSuccess(contacts) {
+	for (var c = 0; c < contacts.length; c++) {
+		alert(contacts[i].phoneNumber[0].value);
+		//$("#contactList").append("<li><h1>"+contacts[i].phoneNumber[0].value+"</h1></li>");
+		//$("#contactList").listview("refresh");
+	}
+}
+
+function onError(){
+	alert("Some Error Occured");
+}*/
