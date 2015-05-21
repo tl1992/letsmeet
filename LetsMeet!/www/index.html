@@ -32,7 +32,7 @@
         <script type="text/javascript">
 			var checkName = localStorage.getItem("name");
 			var checkPhone = localStorage.getItem("phone");
-            if(checkName !== null || checkName !== "" || checkPhone !== null || checkPhone !== ""){
+            if(checkName !== null || checkPhone !== null){
 				window.location = "dashboard.html";
 			}
         </script>
@@ -55,8 +55,8 @@
 				<article id="login" class="block info">
 					<h1>Aanmelden</h1>
 					<form name="invitation" action="" onsubmit="return inviteForm()" method="post">
-						<input type="text" name="fname" placeholder="Naam">
-						<input type="text" name="fphone" placeholder="Telefoon">
+						<input type="text" name="fname" placeholder="Naam" value="">
+						<input type="tel" name="fphone" placeholder="Telefoon" value="">
 						<input type="submit" class="btn" value="Aanmelden">
 					</form>
 				</article>
