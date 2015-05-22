@@ -19,6 +19,7 @@ setInterval(function(){
 	},
 	error: function(data) {
 		//alert("ERROR");
+		$('#count').remove();
 	}
 	});
 },5000);
