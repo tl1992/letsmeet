@@ -3,6 +3,15 @@ ons.ready(function() {
 	//myNavigator.pushPage('register.html', { animation : 'slide' } );
 	
 	// ####################################################################
+	// index page
+	// ####################################################################
+	document.addEventListener("pageinit", function(e) {
+		if (e.target.id == "startpage") {
+			alert('start');
+		}
+	}, false);
+	
+	// ####################################################################
 	// Registration page
 	// ####################################################################
 	document.addEventListener("pageinit", function(e) {
