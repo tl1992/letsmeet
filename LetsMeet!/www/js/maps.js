@@ -1,32 +1,58 @@
 var map, placesList;
 
+var placeSearch, autocomplete;
+
+
 function initialize() {
 
 	navigator.geolocation.getCurrentPosition(onSuccess);
 	
+
 	
 	function onSuccess(position) {
-		var current_lat = position.coords.latitude;
-		var current_lng = position.coords.longitude;
-		var pyrmont = new google.maps.LatLng(current_lat, current_lng);
 		
-		 map = new google.maps.Map(document.getElementById('map-canvas'), {
-			center: pyrmont,
-			zoom: 17
-		 });
-		 
-		 var request = {
-			location: pyrmont,
-			radius: 500,
-			types: ['restaurant']
-		  };
+		var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            document.getElementById('city2').value = place.name;
+            document.getElementById('cityLat').value = place.geometry.location.lat();
+            document.getElementById('cityLng').value = place.geometry.location.lng();
+            //alert("This function is working!");
+            //alert(place.name);
+           // alert(place.address_components[0].long_name);
+		   
+		   	var current_lat = position.coords.latitude;
+			var current_lng = position.coords.longitude;	
 
-		  placesList = document.getElementById('places');
-
-		  var service = new google.maps.places.PlacesService(map);
-		  service.nearbySearch(request, callback);
+			var averageLat = (position.coords.latitude+place.geometry.location.lat())/2;
+			var averageLng = (position.coords.longitude+place.geometry.location.lng())/2;  
 			
-	}
+			var pyrmont = new google.maps.LatLng(averageLat, averageLng);
+
+			
+			 map = new google.maps.Map(document.getElementById('map-canvas'), {
+				center: pyrmont,
+				zoom: 10 
+			 });
+			 
+			 var request = {
+				location: pyrmont,
+				radius: 2000,
+				types: ['restaurant']
+			  };
+
+			  placesList = document.getElementById('places');
+
+			  var service = new google.maps.places.PlacesService(map);
+			  service.nearbySearch(request, callback);
+		   
+
+        });
+
+
+			
+	} 
 
 	  
 }
