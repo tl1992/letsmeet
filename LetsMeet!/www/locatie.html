@@ -5,14 +5,15 @@
         <div class="right"><a onclick="checkForInvites()" id="notification" class="btn"><span class="icon">&#xf0f3;</span></a></div>
     </ons-toolbar>
 	
-    <div id="container">
+    <div id="container" ng-controller="MapController" data-ng-init="initialize()">
 		
         <article class="block info">
-				<form>
+		
+			<form>
 				<input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />  
-				<input type="hidden" id="city2" name="city2" />
-				<input type="hidden" id="cityLat" name="cityLat" />
-				<input type="hidden" id="cityLng" name="cityLng" />  
+				<input type="hidden" id="city2" ng-model="city2" />
+				<input type="hidden" id="cityLat" ng-model="cityLat" />
+				<input type="hidden" id="cityLng" ng-model="cityLng" />  
 			</form>
 			<div id="map-canvas" style="width:100%;height:250px;"></div> 
 		</article>
