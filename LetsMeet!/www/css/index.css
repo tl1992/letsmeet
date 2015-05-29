@@ -70,50 +70,44 @@ a:hover {
     border: 1px solid #000;
     margin: 10px 5px 0 0;
   }
-header {
+.navigation-bar {
 	background: #00796b;
-	position: fixed;
-	width: 100%;
-	top: 0;
-	z-index: 999;
+	height: 55px;
 	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
 	-moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.6);
 	box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.6);
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
-	height: 55px;
 }
-header h1 {
+.navigation-bar h1 {
 	display: inline-block;
-	padding: 20px 10px 14px;  
+	padding: 0 10px 0;  
 	color: #fff; 
 	font-size: 18px;
 	font-weight: normal;
+	line-height:55px;
 	 margin-bottom: 0px;
 }
-header .btnGroup {
-	float: left;
-}
-header .btnGroup a.btn { 
+.navigation-bar__left a.btn { 
 	color: #fff;
 	display: inline-block;
 	text-decoration: none;
-	padding: 18px 10px 16px 18px;
+	padding: 0 10px 0 18px;
+	line-height:55px;
 	font-size: 20px;
 }
-header .btnGroupRight {
-	float: right;
-}
-header .btnGroupRight a.btn {
+.navigation-bar__right, navigation-bar__left{height:55px;}
+.navigation-bar__right a.btn {
 	color: #fff;
 	display: inline-block;
 	text-decoration: none;
-	padding: 18px 18px 16px 18px;
+	padding: 0 18px 0 18px;
+	line-height:55px;
 	font-size: 18px;
 }
-header .btnGroupRight #notification{
+.navigation-bar__right #notification{
 	position:relative;
 }
-header .btnGroupRight #count{
+.navigation-bar__right #count{
 	position:absolute; top:12px; right:12px;
 	width:12px; height:10px; padding:2px 0 0 0;
 	border-radius: 10px; background:#FFEB3B;
@@ -121,26 +115,26 @@ header .btnGroupRight #count{
 	color:#00796b;
 }
 
-header nav {
+.navigation-bar nav {
 	background: #fff;
 	display: none;
 }
-header nav span {
+.navigation-bar nav span {
 	padding: 15px 20px;
 	text-decoration: none;
 	color: #000;
 }
-header nav span {
+.navigation-bar nav span {
 	display: inline-block;
 	width: 25px;
 }
-header nav li a:hover {
+.navigation-bar nav li a:hover {
 	background: #e9e9e9;
 } 
 
 #container {
 	width: 640px;
-	margin: 73px auto 0;
+	margin: 32px auto 0;
 	
 }
 #container .btn {

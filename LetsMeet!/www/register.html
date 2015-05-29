@@ -1,0 +1,25 @@
+<ons-page id="register">
+    <ons-toolbar>
+        <div class="left"><a href="javascript:void(0)" class="btn"><span class="icon">&#xf041;</span></a> <h1>Let's Meet!</h1></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    </ons-toolbar>
+    
+    <div id="container">
+
+        <article id="login" class="block info">
+            <h1>Aanmelden</h1>
+            <form name="invitation" ng-submit="register()" ng-controller="InviteController" method="post">
+                <input type="text" ng-model="name" placeholder="Naam" value="">
+                <input type="tel" ng-model="phone" placeholder="Telefoon" value="">
+                <input type="submit" class="btn" value="Aanmelden">
+            </form>
+        </article>
+    	
+        <article id="login" class="block info">
+            <ons-button modifier="light" onclick="myNavigator.popPage('index.html', { animation : 'slide' } )">
+                back
+            </ons-button>
+        </article>
+    </div>
+</ons-page>
