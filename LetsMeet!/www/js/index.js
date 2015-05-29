@@ -7,18 +7,7 @@ ons.ready(function() {
 	// ####################################################################
 	document.addEventListener("pageinit", function(e) {
 		if (e.target.id == "register") {
-			function inviteForm() {
-				var name = document.forms["invitation"]["fname"].value;
-				var phone = document.forms["invitation"]["fphone"].value;
-				if (name == null || phone == "") {
-					alert("Vul een naam en telefoon nummer in");
-					return false;
-				}
-				localStorage.setItem("name", name);
-				localStorage.setItem("phone", phone);
-				myNavigator.pushPage('dashboard.html', { animation : 'slide' } );
-				return false;
-			}
+			
 		}
 	}, false);
 	
@@ -52,28 +41,7 @@ ons.ready(function() {
 				}
 				});
 			},5000);
-			
-			// Functie voor het controleren op uitnodigingen
-			function checkForInvites() {
-				var myName = localStorage.getItem("name");
-				var myPhone = localStorage.getItem("phone");
-				
-				$.ajax({
-					type: "GET",
-					url: "http://dannycoenen.nl/app/letsmeet/check.php?name=" + myName + "&phone=" + myPhone,
-					dataType: "json",
-					success: function(data) {
-						for (var i = 0; i < data.length;) {
-							alert('Je hebt een nieuwe uitnodiging van: ' + data[i].firstUser);
-							i++;
-						}
-					},
-					error: function(data) {
-						alert("Geen nieuwe meldingen");
-					}
-				});
-			}
-			
+						
 			// Functie voor het versturen van uitnodigingen
 			function inviteForm() {
 				var myName = localStorage.getItem("name");
