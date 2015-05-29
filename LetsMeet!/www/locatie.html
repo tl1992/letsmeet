@@ -5,27 +5,26 @@
         <div class="right"><a onclick="checkForInvites()" id="notification" class="btn"><span class="icon">&#xf0f3;</span></a></div>
     </ons-toolbar>
 	
-    <div id="container" ng-controller="MapController" data-ng-init="initialize()">
+    <div id="container" ng-controller="MapController">
 		
-        <article class="block info">
-		
-			<form>
-				<input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />  
-				<input type="hidden" id="city2" ng-model="city2" />
-				<input type="hidden" id="cityLat" ng-model="cityLat" />
-				<input type="hidden" id="cityLng" ng-model="cityLng" />  
-			</form>
-			<div id="map-canvas" style="width:100%;height:250px;"></div> 
-		</article>
 		<article class="block info">
-		
-		  <h2>Resultaten</h2>
-		  <ul id="places"></ul>
-		  <button id="more">More results</button>
-
-		</div>
-		
-		<article class="block info output"></article>
+			<div class="row">
+				<div id="map_canvas" ui-map="model.myMap" class="map" ui-options="mapOptions">
+				</div>
+				<div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]">
+				</div>
+			</div>
+			<div class="row" ng-show="showResult()">
+			   Latitude: {{lat}} <br />
+			   Longitude: {{lng}} <br />
+			   Accuracy: {{accuracy}}
+			</div>
+			<div class="row" ng-show="!showResult()">
+				Error : {{error}}
+				Error Code: {{error.code}}
+			</div> 
+		</article>
+        
 	
     </div>
 
