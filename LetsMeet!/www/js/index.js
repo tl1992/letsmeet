@@ -1,7 +1,5 @@
 ons.ready(function() {
 	
-	//myNavigator.pushPage('register.html', { animation : 'slide' } );
-	
 	// ####################################################################
 	// index page
 	// ####################################################################
@@ -78,25 +76,6 @@ ons.ready(function() {
 				
 				return false;
 			}
-			
-			// Inladen van contacten
-			/*var options = new ContactFindOptions();
-			options.filter="";
-			options.multiple=true; 
-			var fields = ["*"];
-			navigator.contacts.find(fields, onSuccess, onError, options);
-			
-			function onSuccess(contacts) {
-				for (var c = 0; c < contacts.length; c++) {
-					alert(contacts[i].phoneNumber[0].value);
-					//$("#contactList").append("<li><h1>"+contacts[i].phoneNumber[0].value+"</h1></li>");
-					//$("#contactList").listview("refresh");
-				}
-			}
-			
-			function onError(){
-				alert("Some Error Occured");
-			}*/
 		}
 	}, false);
 	

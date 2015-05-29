@@ -1,20 +1,11 @@
 (function(){
   'use strict';
-  var module = angular.module('app', ['onsen']);
-  
-  module.factory('$data', function() {
-      var data = {};
-      
-      data.items = [
-      ]; 
-      
-      return data;
-  });
+  var module = angular.module('app', ['onsen']);  
   
 // ####################################################################
 // Registration page
 // ####################################################################
-  module.controller('LoginController', function($scope, $data) {
+  module.controller('LoginController', function($scope) {
 	$scope.register = function() {
 		var name = $scope.name;
 		var phone = $scope.phone;
@@ -32,7 +23,7 @@
 // ####################################################################
 // Dashboard page
 // ####################################################################
-  module.controller('NotificationController', function($scope, $data) {
+  module.controller('NotificationController', function($scope) {
 	$scope.check = function() {
 		var myName = localStorage.getItem("name");
 		var myPhone = localStorage.getItem("phone");
@@ -54,7 +45,7 @@
 	}
   });
   
-  module.controller('InviteController', function($scope, $data) {
+  module.controller('InviteController', function($scope) {
 	$scope.invite = function() {
 		
 		var myName = localStorage.getItem("name");
@@ -85,6 +76,33 @@
 
   });
   
+  module.controller('InviteContactController', function($scope) {
+	$scope.inviteContact = function() {
+		
+		var myName = localStorage.getItem("name");
+		var myPhone = localStorage.getItem("phone");
+	
+		var secName = $scope.name;
+
+
+
+		var options = new ContactFindOptions();
+		options.filter = secName;
+		var fields = ["displayName", "name"];
+		navigator.contacts.find(fields, onSuccess, onError, options);
+
+		function onSuccess(contacts) {
+			for (var i = 0; i < contacts.length; i++) {
+				alert("Display Name = " + contacts[i].displayName);
+			}
+		}
+		function onError(contactError) {
+			alert('onError!');
+		}
+		
+		return false;
+	}
+  });
   
   
   module.controller('MapController', function ($scope) {
