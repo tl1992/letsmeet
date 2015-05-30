@@ -5,27 +5,22 @@
         <div class="right"><a onclick="checkForInvites()" id="notification" class="btn"><span class="icon">&#xf0f3;</span></a></div>
     </ons-toolbar>
 	
-    <div id="container" ng-controller="MapController">
+    <div id="container">
 		
 		<article class="block info">
-			<div class="row">
-				<div id="map_canvas" ui-map="model.myMap" class="map" ui-options="mapOptions">
-				</div>
-				<div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]">
+			<div ng-app="mapsApp" ng-controller="MapCtrl">
+				<div id="maps" style="width: 100%; height: 250px;"></div>
+				<div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+					 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
 				</div>
 			</div>
-			<div class="row" ng-show="showResult()">
-			   Latitude: {{lat}} <br />
-			   Longitude: {{lng}} <br />
-			   Accuracy: {{accuracy}}
-			</div>
-			<div class="row" ng-show="!showResult()">
-				Error : {{error}}
-				Error Code: {{error.code}}
-			</div> 
 		</article>
-        
-	
+		
+		<article class="block info">
+			<ul id="places">
+			</ul>
+		</article>
+         
     </div>
 
 </ons-page>

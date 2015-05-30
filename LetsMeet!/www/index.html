@@ -15,11 +15,9 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     
     <script src="lib/onsen/js/angular/angular.js"></script>  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>	
 	<script src="lib/onsen/js/onsenui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>	
 	<script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-	<script src="js/event.js"></script>
-	<script src="js/angular-ui-map.js"></script>
 
     
     <script src="cordova.js"></script>  
@@ -41,7 +39,7 @@
     </script>
 </head>
     
-<body>
+<body ng-app="geo">
     
 <ons-navigator title="Navigator" var="myNavigator">
     <ons-page id="startpage">
