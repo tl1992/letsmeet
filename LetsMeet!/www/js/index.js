@@ -39,6 +39,17 @@ ons.ready(function() {
 					var notifications = data.length;
 					$('<div id="count"></div>').insertAfter('#notification');
 					document.getElementById("count").innerHTML = notifications;
+					
+					document.getElementById("meetings").innerHTML = "";
+					
+					for (var i = 0; i < data.length;) {
+
+						document.getElementById("meetings").innerHTML +=
+							"Naam: " + data[i].firstUser + "<br />" +
+							"Telefoon :" + data[i].firstPhone + "<br /> <br />";
+						i++;
+					}
+					
 				},
 				error: function(data) {
 					//alert("ERROR");
@@ -49,6 +60,14 @@ ons.ready(function() {
 		}
 	}, false);
 	
+	// ####################################################################
+	// Invite page
+	// ####################################################################
+	document.addEventListener("pageinit", function(e) {
+		if (e.target.id == "invite") {
+			$("#inviteForm").hide();
+		}
+	}, false);
 		
 });
 

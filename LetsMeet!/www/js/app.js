@@ -128,14 +128,14 @@
 		navigator.contacts.find(fields, onSuccess, onError, options);
 
 		function onSuccess(contacts) {
+			$("#inviteForm").slideDown();
 			document.getElementById("valueContact").innerHTML = "";
-			
 			for (var i = 0; i < contacts.length; i++) {
 
 				document.getElementById("valueContact").innerHTML +=
-					"<input class='inputRadio' ng-model='contact' type='radio' id='" + i + "' name='contact' value='" + contacts[i].displayName + "'>" +
-					"<label for='" + i + "'>"
-					+ contacts[i].displayName + "<br />" +
+					"<label>" +
+					"<input type='radio' ng-model='contact' name='contact' value='" + contacts[i].displayName + "'>" +
+					contacts[i].displayName + "<br />" +
 					"Mobiel: " + contacts[i].phoneNumbers[0].value +
 					"</label><br /><br />";
 			}
