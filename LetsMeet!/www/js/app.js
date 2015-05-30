@@ -44,46 +44,9 @@
 		});
 	}
   });
-
-// ####################################################################
-// Invite page
-// ####################################################################
+  
   module.controller('InviteController', function($scope) {
 	$scope.invite = function() {
-		
-		var myName = localStorage.getItem("name");
-		var myPhone = localStorage.getItem("phone");
-		
-		alert("naam: " + $scope.contact);
-		return false;
-		var secName = $scope.contact;
-		var secPhone = "test";
-		
-		if (secName == null || secPhone == "") {
-			alert("Vul een naam en telefoon nummer in");
-			return false;
-		}
-		
-		$.ajax({
-			type: "GET",
-			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + secName + "&secPhone=" + secPhone,
-			dataType: "json",
-			success: function(data) {
-				alert(data);
-			},
-			error: function(data) {
-				alert("ERROR");
-			}
-		});
-		
-		return false;
-	}
-
-  });
-  
-  
-  module.controller('InviteOldController', function($scope) {
-	$scope.inviteOld = function() {
 		
 		var myName = localStorage.getItem("name");
 		var myPhone = localStorage.getItem("phone");
@@ -112,35 +75,28 @@
 	}
 
   });
+   
   
-  module.controller('SearchContactController', function($scope) {
-	$scope.searchContact = function() {
+  module.controller('InviteContactController', function($scope) {
+	$scope.inviteContact = function() {
 		
 		var myName = localStorage.getItem("name");
 		var myPhone = localStorage.getItem("phone");
 	
 		var secName = $scope.name;
 
+
+
 		var options = new ContactFindOptions();
 		options.filter = secName;
-		options.multiple = true;
-		var fields = ["displayName", "name", "phoneNumbers"];
+		var fields = ["displayName", "name"];
 		navigator.contacts.find(fields, onSuccess, onError, options);
 
 		function onSuccess(contacts) {
-			document.getElementById("valueContact").innerHTML = "";
-			
 			for (var i = 0; i < contacts.length; i++) {
-
-				document.getElementById("valueContact").innerHTML +=
-					"<input class='inputRadio' ng-model='contact' type='radio' id='" + i + "' name='contact' value='" + contacts[i].displayName + "'>" +
-					"<label for='" + i + "'>"
-					+ contacts[i].displayName + "<br />" +
-					"Mobiel: " + contacts[i].phoneNumbers[0].value +
-					"</label><br /><br />";
+				alert("Display Name = " + contacts[i].displayName);
 			}
-
-		};
+		}
 		function onError(contactError) {
 			alert('onError!');
 		}
@@ -148,11 +104,7 @@
 		return false;
 	}
   });
-
-// ####################################################################
-// Location page
-// ####################################################################
-
+  
   var app = angular.module("geo", ["ui.map", "ui.event"])
     module.controller("MapController", function ($scope) {
         $scope.lat = "0";

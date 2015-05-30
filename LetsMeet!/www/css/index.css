@@ -157,7 +157,6 @@ a:hover {
 #container .btn:hover {
 	background: #007a6f;
 }
-
 #container .block {
 	background: #fff;
 	padding: 15px;
@@ -171,12 +170,6 @@ a:hover {
 	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
-
-#container .centerContent{
-	text-align:center;
-	background:none; box-shadow:none;
-}
-
 #container .block  h2 {
 	margin: 10px 0px;
 }

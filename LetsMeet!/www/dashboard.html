@@ -14,16 +14,30 @@
         </article>
         
         <article id="invite" class="block info">
-            <ons-button class="btn" modifier="light" onclick="myNavigator.pushPage('invite.html', { animation : 'slide' } )">
-				Nieuwe afspraak maken
-			</ons-button>
+            <h1>Maak een afspraak</h1>
+
+            <form name="invitation" ng-submit="invite()" ng-controller="InviteController" method="post">
+                <input type="text" ng-model="name" placeholder="Naam">
+                <input type="tel" ng-model="phone" placeholder="Telefoon">
+                <input type="submit" class="btn" value="Uitnodiging versturen">
+            </form>
+            
         </article>
         
         <article id="invite" class="block info">
-            <h1>Mijn afspraken</h1>
-			<div>Er zijn geen geplande afspraken</div>
+            <h1>Maak een afspraak</h1>
+
+            <form name="invitation" ng-submit="inviteContact()" ng-controller="InviteContactController" method="post">
+                <input type="text" ng-model="name" placeholder="Naam">
+                <input type="submit" class="btn" value="Uitnodiging versturen">
+            </form>
+            
         </article>
         
+        <!--
+        <ul id="contactList">
+        </ul>
+        -->
         
         <article id="map" class="block info">
             <h1>Locatie (Demo)</h1>
