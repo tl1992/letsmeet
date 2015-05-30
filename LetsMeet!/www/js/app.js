@@ -149,42 +149,84 @@
 	}
   });
 
-// ####################################################################
-// Location page
-// ####################################################################
+	// ####################################################################
+	// Location page
+	// ####################################################################
   
-  var app = angular.module("geo", ["ui.map", "ui.event"])
-    module.controller("MapController", function ($scope) {
-        $scope.lat = "0";
-        $scope.lng = "0";
-        $scope.accuracy = "0";
-        $scope.error = "";
-        $scope.model = { myMap: undefined };
-        $scope.myMarkers = [];
+ 	//Angular App Module and Controller
+	angular.module('mapsApp', [])
+	module.controller('MapCtrl', function ($scope) {
+		
+		
+		 $scope.showPosition = function (position) {
+			 
+			var pyrmont = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			var mapOptions = {
+				zoom: 16,
+				center: pyrmont,
+				mapTypeId: google.maps.MapTypeId.TERRAIN
+			}
 
-        $scope.showResult = function () {
-            return $scope.error == "";
-        }
+			$scope.map = new google.maps.Map(document.getElementById('maps'), mapOptions);
+			
+			 var request = {
+				location: pyrmont,
+				radius: 2000,
+				types: ['restaurant']
+			  };
 
-        $scope.mapOptions = {
-            center: new google.maps.LatLng($scope.lat, $scope.lng),
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+			  $scope.placesList = document.getElementById('places');
 
-        $scope.showPosition = function (position) {
-            $scope.lat = position.coords.latitude;
-            $scope.lng = position.coords.longitude;
-            $scope.accuracy = position.coords.accuracy;
-            $scope.$apply();
+			  $scope.service = new google.maps.places.PlacesService(map);
+			  $scope.service.nearbySearch(request, $scope.callback);
+		 }
+		 
+		 $scope.callback = function (results, status, pagination) {
+		  if (status != google.maps.places.PlacesServiceStatus.OK) {
+			return;
+		  } else {
+			$scope.createMarkers(results);
 
-            var latlng = new google.maps.LatLng($scope.lat, $scope.lng);
-			alert($scope.model.myMap);
-            $scope.model.myMap.setCenter(latlng);
-            $scope.myMarkers.push(new google.maps.Marker({ map: $scope.model.myMap, position: latlng }));
-        }
+			/*if (pagination.hasNextPage) {
+			  var moreButton = document.getElementById('more');
 
-        $scope.showError = function (error) {
+			  moreButton.disabled = false;
+
+			  google.maps.event.addDomListenerOnce(moreButton, 'click',
+				  function() {
+				moreButton.disabled = true;
+				pagination.nextPage();
+			  });
+			}*/
+		  }
+		}
+		$scope.createMarkers = function (places) {
+		  $scope.bounds = new google.maps.LatLngBounds();
+
+		  for (var i = 0, place; place = places[i]; i++) {
+			var image = {
+			  url: place.icon,
+			  size: new google.maps.Size(71, 71),
+			  origin: new google.maps.Point(0, 0),
+			  anchor: new google.maps.Point(17, 34),
+			  scaledSize: new google.maps.Size(25, 25)
+			};
+
+			var marker = new google.maps.Marker({
+			  map: $scope.map,
+			  icon: image,
+			  title: place.name,
+			  position: place.geometry.location
+			});
+
+			$scope.placesList.innerHTML += '<li>' + place.name + '</li>';
+
+			$scope.bounds.extend(place.geometry.location);
+		  }
+		  $scope.map.fitBounds($scope.bounds);
+		}
+		 
+		 $scope.showError = function (error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
                     $scope.error = "User denied the request for Geolocation."
@@ -201,8 +243,9 @@
             }
             $scope.$apply();
         }
-
-        $scope.getLocation = function () {
+		
+		
+		$scope.getLocation = function () {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
             }
@@ -212,104 +255,9 @@
         }
 
         $scope.getLocation();
-    });
+
+	});
   
-  
-  /*module.controller('MapController', function ($scope) {
-		  
-		var map, placesList;
-		var placeSearch, autocomplete;
-		$scope.initialize = function () {
-			//alert(223456);
-			
-			
-			$scope.getLocation = function () {
-				navigator.geolocation.getCurrentPosition($scope.onSuccess);
-			}
-	 
-			$scope.getLocation();
-			
-			//navigator.geolocation.getCurrentPosition($scope.onSuccess);
-			
-			$scope.onSuccess = function (position) {
-				alert(456);
-				var input = document.getElementById('searchTextField');
-				var autocomplete = new google.maps.places.Autocomplete(input);
-				google.maps.event.addListener(autocomplete, 'place_changed', function () {
-					var place = autocomplete.getPlace();
-					$scope.city2 = place.name;
-					$scope.cityLat = place.geometry.location.lat();
-					$scope.cityLng = place.geometry.location.lng();
-					//alert("This function is working!");
-					//alert(place.name);
-				   // alert(place.address_components[0].long_name);
-				   
-					$scope.current_lat = position.coords.latitude;
-					$scope.current_lng = position.coords.longitude;	
-					var averageLat = (position.coords.latitude+place.geometry.location.lat())/2;
-					var averageLng = (position.coords.longitude+place.geometry.location.lng())/2;  
-					
-					var pyrmont = new google.maps.LatLng(averageLat, averageLng);
-					
-					 $scope.map = new google.maps.Map(document.getElementById('map-canvas'), {
-						center: pyrmont,
-						zoom: 10 
-					 });
-					 
-					 var request = {
-						location: pyrmont,
-						radius: 2000,
-						types: ['restaurant']
-					  };
-					  placesList = document.getElementById('places');
-					  var service = new google.maps.places.PlacesService(map);
-					  service.nearbySearch(request, callback);
-				   
-				});
-					
-			} 
-			  
-		}
-		$scope.callback = function (results, status, pagination) {
-		  if (status != google.maps.places.PlacesServiceStatus.OK) {
-			return;
-		  } else {
-			createMarkers(results);
-			if (pagination.hasNextPage) {
-			  var moreButton = document.getElementById('more');
-			  moreButton.disabled = false;
-			  google.maps.event.addDomListenerOnce(moreButton, 'click',
-				  function() {
-				moreButton.disabled = true;
-				pagination.nextPage();
-			  });
-			}
-		  }
-		}
-		$scope.createMarkers = function (places) {
-		  var bounds = new google.maps.LatLngBounds();
-		  for (var i = 0, place; place = places[i]; i++) {
-			var image = {
-			  url: place.icon,
-			  size: new google.maps.Size(71, 71),
-			  origin: new google.maps.Point(0, 0),
-			  anchor: new google.maps.Point(17, 34),
-			  scaledSize: new google.maps.Size(25, 25)
-			};
-			var marker = new google.maps.Marker({
-			  map: $scope.map,
-			  icon: image,
-			  title: place.name,
-			  position: place.geometry.location
-			});
-			placesList.innerHTML += '<li>' + place.name + '</li>';
-			bounds.extend(place.geometry.location);
-		  }
-		  map.fitBounds(bounds);
-		}
-		//google.maps.event.addDomListener(window, 'load', initialize);
-  
-  });*/
  
   
 })();
