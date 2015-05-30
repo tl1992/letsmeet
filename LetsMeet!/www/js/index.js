@@ -5,7 +5,6 @@ ons.ready(function() {
 	// ####################################################################
 	document.addEventListener("pageinit", function(e) {
 		if (e.target.id == "startpage") {
-			alert('start');
 		}
 	}, false);
 	
@@ -14,7 +13,6 @@ ons.ready(function() {
 	// ####################################################################
 	document.addEventListener("pageinit", function(e) {
 		if (e.target.id == "register") {
-			
 		}
 	}, false);
 	
@@ -24,7 +22,7 @@ ons.ready(function() {
 	document.addEventListener("pageinit", function(e) {
 		if (e.target.id == "dashboard") {
 			//localStorage.clear();
-
+			
 			var myName = localStorage.getItem("name");
 			var myPhone = localStorage.getItem("phone");
 			document.getElementById("myName").innerHTML = myName;
@@ -41,6 +39,17 @@ ons.ready(function() {
 					var notifications = data.length;
 					$('<div id="count"></div>').insertAfter('#notification');
 					document.getElementById("count").innerHTML = notifications;
+					
+					document.getElementById("meetings").innerHTML = "";
+					
+					for (var i = 0; i < data.length;) {
+
+						document.getElementById("meetings").innerHTML +=
+							"Naam: " + data[i].firstUser + "<br />" +
+							"Telefoon :" + data[i].firstPhone + "<br /> <br />";
+						i++;
+					}
+					
 				},
 				error: function(data) {
 					//alert("ERROR");
@@ -48,37 +57,17 @@ ons.ready(function() {
 				}
 				});
 			},5000);
-						
-			// Functie voor het versturen van uitnodigingen
-			function inviteForm() {
-				var myName = localStorage.getItem("name");
-				var myPhone = localStorage.getItem("phone");
-			
-				var secName = document.forms["invitation"]["fname"].value;
-				var secPhone = document.forms["invitation"]["fphone"].value;
-				
-				if (secName == null || secPhone == "") {
-					alert("Vul een naam en telefoon nummer in");
-					return false;
-				}
-				
-				$.ajax({
-					type: "GET",
-					url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + secName + "&secPhone=" + secPhone,
-					dataType: "json",
-					success: function(data) {
-						alert(data);
-					},
-					error: function(data) {
-						alert("ERROR");
-					}
-				});
-				
-				return false;
-			}
 		}
 	}, false);
 	
+	// ####################################################################
+	// Invite page
+	// ####################################################################
+	document.addEventListener("pageinit", function(e) {
+		if (e.target.id == "invite") {
+			$("#inviteForm").hide();
+		}
+	}, false);
 		
 });
 
