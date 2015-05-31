@@ -25,8 +25,8 @@ ons.ready(function() {
 			
 			var myName = localStorage.getItem("name");
 			var myPhone = localStorage.getItem("phone");
-			document.getElementById("myName").innerHTML = myName;
-			document.getElementById("myPhone").innerHTML = myPhone;
+			//document.getElementById("myName").innerHTML = myName;
+			//document.getElementById("myPhone").innerHTML = myPhone;
 			
 			// Controleer elke 5 seconden op uitnodigingen
 			setInterval(function(){

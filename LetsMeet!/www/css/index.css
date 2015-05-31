@@ -43,22 +43,36 @@ a, a *{
 }
 span.icon{font-family:'FontAwesome';}
 
+@font-face {
+    font-family: 'roboto_condensedregular';
+    src: url('font/RobotoCondensed-Regular-webfont.eot');
+    src: url('font/RobotoCondensed-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/RobotoCondensed-Regular-webfont.woff') format('woff'),
+         url('font/RobotoCondensed-Regular-webfont.ttf') format('truetype'),
+         url('font/RobotoCondensed-Regular-webfont.svg#roboto_condensedregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 body {
 	background: #f3f3f3;
-	font-family: arial, verdana;
+	font-family: 'roboto_condensedregular' !important;
 }
 
-h1{ font-size: 26px; color:  #007a6f; font-weight: bold; margin-bottom: 10px; }
-h2{ font-size: 22px; color:  #007a6f; font-weight: bold; margin-bottom: 10px; }
-h3{ font-size: 18px; color:  #007a6f; font-weight: bold; margin-bottom: 10px; }
-h4{ font-size: 14px; color:  #007a6f; font-weight: bold; margin-bottom: 10px; }
+h1{ font-size: 20px; color:  #df823d; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
+h2{ font-size: 18px; color:  #df823d; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
+h3{ font-size: 16px; color:  #df823d; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
+h4{ font-size: 14px; color:  #df823d; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
 
 .error					{background: #ffbaba; border: 1px solid #d8000c; color: #d8000c; padding: 15px; margin-bottom: 20px;}
 .succes					{background: #dff2bf; border: 1px solid #4f8a10; color: #4f8a10; padding: 15px; margin-bottom: 20px;} 
 
-a {
-	color: #00796b;
+.img-responsive 	{max-width: 100%;}
+
+a { 
+	color: #f29038;
 }
 a:hover {
 	text-decoration: none;
@@ -71,15 +85,20 @@ a:hover {
     margin: 10px 5px 0 0;
   }
 .navigation-bar {
-	background: #00796b;
+	background: #f29038;
 	height: 55px;
 	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
 	-moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.6);
 	box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.6);
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
 }
+.navigation-bar  .logo {
+	display: block;
+	 padding: 14px 15px 0;
+	 float: left;
+}
 .navigation-bar h1 {
-	display: inline-block;
+	display: block;
 	padding: 0 10px 0;  
 	color: #fff; 
 	font-size: 18px;
@@ -112,7 +131,7 @@ a:hover {
 	width:12px; height:10px; padding:2px 0 0 0;
 	border-radius: 10px; background:#FFEB3B;
 	font-size:10px; text-align:center;
-	color:#00796b;
+	color:#f29038;
 }
 
 .navigation-bar nav {
@@ -131,17 +150,30 @@ a:hover {
 .navigation-bar nav li a:hover {
 	background: #e9e9e9;
 } 
-
+header.headerImage {
+	background: url(../img/header.png);
+	background-size: 100%;
+	height: 215px;
+	position: relative;
+	margin-top: 12px;
+}
+header.headerImage .roundBtn{
+	position: absolute;
+	bottom: -30px; 
+	right: 25px
+}
 #container {
 	width: 640px;
-	margin: 32px auto 0;
-	
+	margin: 30px auto 0;
+}
+#container.dashboard {
+	margin: 18px auto 0;
 }
 #container .btn {
 	display: block;
 	font-size: 16px;
 	color: #fff;
-	background: #00796b;
+	background: #f29038;
 	border: 0;
 	width: auto;
 	padding:10px 0px;
@@ -155,21 +187,37 @@ a:hover {
 	line-height: 18px;
 }
 #container .btn:hover {
-	background: #007a6f;
+	background: #f29038;
+}
+.roundBtn {
+	background: #df823d;
+	padding: 15px 25px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	font-size: 18px;
+	color: #fff;
+	 box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	 border: none;
+}
+.roundBtn:hover {
+	background: #f29038;
+	color: #fff;
 }
 
-#container .block {
+.block {
 	background: #fff;
 	padding: 15px;
 	margin-left: 15px;
 	margin-right: 15px;
 	margin-bottom: 20px;
-	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
-	-moz-box-shadow:    0px 0px 3px 0px rgba(0, 0, 0, 0.05);
-	box-shadow:         0px 0px 3px 0px rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow:    0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+	box-shadow:         0px 0px 3px 0px rgba(0, 0, 0, 0.1);
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
+	border-bottom: 3px solid #ffb879;
 }
 
 #container .centerContent{
@@ -182,10 +230,17 @@ a:hover {
 }
 #container .block  p {
 	line-height: 24px;
+	font-size: 14px;
 }
-#container .block  p.meta {
+#container .block .meta {
+	display: inline-block;
 	font-size: 12px;
 	color: #bcbcbc;
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+#container .block .meta span {
+	margin-right: 5px;
 }
 #container .block  p.margin {
 	margin: 10px 0px;
@@ -214,6 +269,25 @@ a:hover {
 #container .info a {
 	font-weight: bold;
 }
+#container article .left {
+	width: 22%;
+	float: left;
+}
+#container article .left .icon {
+	display: inline-block;
+	background: #df823d;
+	padding: 15px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	font-size: 18px;
+	color: #fff;
+	border: none;
+}
+#container article .right {
+	width: 78%;
+	float: left;
+}
 #container form input {
 	display: block;
 	padding: 3% 2%;
@@ -229,7 +303,7 @@ a:hover {
 	font-family: arial, verdana; 
 	font-size: 16px;
 	color: #fff;
-	background: #00796b;
+	background: #f29038;
 	border: 0;
 	width: auto;
 	padding:10px 0px;
@@ -255,7 +329,7 @@ a:hover {
 .custom-file-input::before {
   content: 'Selecteer een Photo Sphere';
   display: inline-block;
-  background: #00796b;
+  background: #f29038;
   border-radius: 2px;
 	padding:10px 0px;
 	width: 100%;
