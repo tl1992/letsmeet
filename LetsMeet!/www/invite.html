@@ -5,18 +5,18 @@
         <div class="right" ng-controller="NotificationController"><a ng-click="check()" id="notification" class="btn"><span class="icon">&#xf0f3;</span></a></div>
     </ons-toolbar>
 	
-    <div id="container">
+    <div id="container" ng-controller="SearchContactController">
            
 		<article id="invite" class="block info">
             <h1>Zoeken naar contacten</h1>
-            <form name="invitation" ng-submit="searchContact()" ng-controller="SearchContactController" method="post">
+            <form name="invitation" ng-submit="searchContact()" method="post">
                 <input type="text" ng-model="name" placeholder="Naam">
                 <input type="submit" class="btn" value="Zoeken">
             </form>
         </article>
         
         <article id="inviteForm" class="block info">
-            <form name="invitation" ng-submit="invite()" ng-controller="InviteController" method="post">
+            <form name="invitation" ng-submit="invite()" method="post">
                 <div id="valueContact" ng-bind-html="myHTML">Contact niet gevonden
                 
                 
@@ -44,16 +44,6 @@
                 <input type="submit" class="btn" value="Uitnodiging versturen">
             </form>
         </article> 
-         <!--
-        <article id="invite" class="block info">
-            <h1>Maak een afspraak</h1>
-            <form name="invitation" ng-submit="inviteOld()" ng-controller="InviteOldController" method="post">
-                <input type="text" ng-model="name" placeholder="Naam">
-                <input type="tel" ng-model="phone" placeholder="Telefoon">
-                <input type="submit" class="btn" value="Uitnodiging versturen">
-            </form>
-        </article>
-       	-->
 
     </div>
 

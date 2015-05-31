@@ -48,72 +48,9 @@
 // ####################################################################
 // Invite page
 // ####################################################################
-  module.controller('InviteController', function($scope) {
-	$scope.invite = function() {
-		
-		var myName = localStorage.getItem("name");
-		var myPhone = localStorage.getItem("phone");
-		
-		alert("naam: " + $scope.contact);
-		return false;
-		var secName = $scope.contact;
-		var secPhone = "test";
-		
-		if (secName == null || secPhone == "") {
-			alert("Vul een naam en telefoon nummer in");
-			return false;
-		}
-		
-		$.ajax({
-			type: "GET",
-			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + secName + "&secPhone=" + secPhone,
-			dataType: "json",
-			success: function(data) {
-				alert(data);
-			},
-			error: function(data) {
-				alert("ERROR");
-			}
-		});
-		
-		return false;
-	}
-
-  });
-  
-  
-  module.controller('InviteOldController', function($scope) {
-	$scope.inviteOld = function() {
-		
-		var myName = localStorage.getItem("name");
-		var myPhone = localStorage.getItem("phone");
-	
-		var secName = $scope.name;
-		var secPhone = $scope.phone;
-		
-		if (secName == null || secPhone == "") {
-			alert("Vul een naam en telefoon nummer in");
-			return false;
-		}
-		
-		$.ajax({
-			type: "GET",
-			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + secName + "&secPhone=" + secPhone,
-			dataType: "json",
-			success: function(data) {
-				alert(data);
-			},
-			error: function(data) {
-				alert("ERROR");
-			}
-		});
-		
-		return false;
-	}
-
-  });
-  
-  module.controller('SearchContactController', function($scope) {
+  module.controller('SearchContactController', function($scope, $compile) {
+	  
+	//Search phone contacts
 	$scope.searchContact = function() {
 		
 		var myName = localStorage.getItem("name");
@@ -131,19 +68,53 @@
 			$("#inviteForm").slideDown();
 			document.getElementById("valueContact").innerHTML = "";
 			for (var i = 0; i < contacts.length; i++) {
-
-				document.getElementById("valueContact").innerHTML +=
+				
+				var person = contacts[i].displayName + "," + contacts[i].phoneNumbers[0].value;
+				
+				var $newElement = $(
 					"<label>" +
-					"<input type='radio' ng-model='contact' name='contact' value='" + contacts[i].displayName + "'>" +
+					"<input type='radio' ng-model='contact' name='contact' value='" + person + "'>" +
 					contacts[i].displayName + "<br />" +
 					"Mobiel: " + contacts[i].phoneNumbers[0].value +
-					"</label><br /><br />";
+					"</label><br /><br />").appendTo("#valueContact");
+					$compile($newElement)($scope);
+					
 			}
 
 		};
 		function onError(contactError) {
 			alert('onError!');
 		}
+		
+		return false;
+	}
+	
+	//Invite selected phone contact
+	$scope.invite = function() {
+		var myName = localStorage.getItem("name");
+		var myPhone = localStorage.getItem("phone");
+		
+		var contactArray = $scope.contact.split(',');
+		
+		var secName = $scope.contact;
+		var secPhone = "test";
+		
+		if (contactArray[0] == null || contactArray[1] == "") {
+			alert("Vul een naam en telefoon nummer in");
+			return false;
+		}
+		
+		$.ajax({
+			type: "GET",
+			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + contactArray[0] + "&secPhone=" + contactArray[1],
+			dataType: "json",
+			success: function(data) {
+				alert(data);
+			},
+			error: function(data) {
+				alert("ERROR");
+			}
+		});
 		
 		return false;
 	}
