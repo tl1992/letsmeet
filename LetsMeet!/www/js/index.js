@@ -48,7 +48,8 @@ ons.ready(function() {
 						
 						if(data[i].status == "accepted"){
 							
-							var location = 'onclick="window.open(\'geo:\'+\'38.897096,-77.036545\', \'_system\')"';
+							var location = 'onclick="window.open(\'geo:\'+\'' +data[i].firstLat+ ','+data[i].firstLon+'\', \'_system\')"';
+							//alert(location);
 							
 							var myDate= data[i].date;
 							myDate= myDate.split(" "); 		
