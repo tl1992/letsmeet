@@ -24,25 +24,105 @@
 // Dashboard page
 // ####################################################################
   module.controller('NotificationController', function($scope) {
-	$scope.check = function() {
-		var myName = localStorage.getItem("name");
-		var myPhone = localStorage.getItem("phone");
+	
+	$scope.checkFunction = function() {
 		
+	}
+	
+  });
+  
+// ####################################################################
+// Notification page
+// ####################################################################
+  module.controller('NotificationPageController', function($scope, $compile) {
+	
+	var myName = localStorage.getItem("name");
+	var myPhone = localStorage.getItem("phone");
+	
+	// Controleer 1x op meldingen
+	$.ajax({
+	type: "GET",
+	url: "http://dannycoenen.nl/app/letsmeet/check.php?name=" + myName + "&phone=" + myPhone,
+	dataType: "json",
+	success: function(data) {
+	
+		document.getElementById("notifications").innerHTML = "";
+		
+		for (var i = 0; i < data.length;) {
+			
+			if(data[i].status == "pending"){
+				var $appointment = $(
+					"<article id='id" + data[i].id + "' class='block info'>" +
+						"<div class='left'>" +
+							"<span class='icon'>&#xf0f4;</span>" +
+						"</div>" +
+						"<div class='right'>" +
+							"<h1>" + data[i].firstUser + "</h1>" +
+							"<div class='meta'>" +
+								"<span class='icon'>&#xf041;</span>" +
+								"Testlocatie" +
+							"</div>" +
+							"<div class='meta'>" +
+								"<span class='icon'>&#xf073;</span> " +
+								 data[i].date +
+							"</div>" +
+							"<div class='meta'>" +
+								"<span class='icon'>&#xf017;</span>" +
+								data[i].time +
+							"</div>" +
+							"<ons-button class='btn' ng-click='accept(" + data[i].id + ")'>" +
+								"Accepteren" +
+							"</ons-button>" +
+							"<ons-button class='btn' ng-click='remove(" + data[i].id + ")'>" +
+								"Afwijzen" +
+							"</ons-button>" +
+						"</div>" +
+						"<div class='clear'></div>" +
+					"</article>").appendTo("#notifications");
+					$compile($appointment)($scope);
+					
+					$scope.meetingId = data[i].id;
+				}
+			i++;
+		}
+		
+	},
+	error: function(data) {
+		alert("Geen nieuwe meldingen gevonden");
+	}
+	});
+	
+	$scope.accept = function(meetingId) {
 		$.ajax({
 			type: "GET",
-			url: "http://dannycoenen.nl/app/letsmeet/check.php?name=" + myName + "&phone=" + myPhone,
+			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&mode=update",
 			dataType: "json",
 			success: function(data) {
-				for (var i = 0; i < data.length;) {
-					alert('Je hebt een nieuwe uitnodiging van: ' + data[i].firstUser);
-					i++;
-				}
+				alert('Uitnodiging geaccepteerd');
+				var articleId = "#id" + meetingId;
+				$(articleId).remove();
 			},
 			error: function(data) {
-				alert("Geen nieuwe meldingen");
+				alert("ERROR");
 			}
 		});
 	}
+	$scope.remove = function(meetingId) {
+		$.ajax({
+			type: "GET",
+			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&mode=remove",
+			dataType: "json",
+			success: function(data) {
+				alert('Uitnodiging afgewezen');
+				var articleId = "#id" + meetingId;
+				$(articleId).remove();
+			},
+			error: function(data) {
+				alert("ERROR");
+			}
+		});
+	}
+	
   });
 
 // ####################################################################
@@ -153,7 +233,7 @@
 		
 		$.ajax({
 			type: "GET",
-			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + contactArray[0] + "&secPhone=" + contactArray[1] + "&firstLat=" + latitude + "&firstLon=" + longitude + "&date=" + date + "&time=" + time,
+			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + contactArray[0] + "&secPhone=" + contactArray[1] + "&firstLat=" + latitude + "&firstLon=" + longitude + "&date=" + date + "&time=" + time + "&status=" + "pending",
 			dataType: "json",
 			success: function(data) {
 				alert(data);
