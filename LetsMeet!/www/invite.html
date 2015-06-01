@@ -6,7 +6,8 @@
     </ons-toolbar>
 	
     <div id="container" ng-controller="SearchContactController">
-           
+          
+
 		<article id="invite" class="block info">
             <h1>Zoeken naar contacten</h1>
             <form name="invitation" ng-submit="searchContact()" method="post">
@@ -17,10 +18,12 @@
         
         <article id="inviteForm" class="block info">
             <form name="invitation" ng-submit="invite()" method="post">
+				<h1>Selecteer datum en tijd</h1>
+				<input type="date" ng-model="datum">
+				<input type="time" ng-model="tijd">
+				
+				<h1>Selecteer contactpersoon</h1>
                 <div id="valueContact" ng-bind-html="myHTML">Contact niet gevonden
-                
-                
-                
                 <label>
 					<input type='radio' ng-model='contact' name='contact' value='test1'>
 						test 1
@@ -37,7 +40,8 @@
 					<input type='radio' ng-model='contact' name='contact' value='test4'>
 						test 4
 				</label>
-                
+                <input type="hidden" ng-model="firstlat">
+				<input type="hidden" ng-model="firstlon">
                 
                 
                 </div>

@@ -89,8 +89,50 @@
 		return false;
 	}
 	
+
+	$scope.showPosition = function (position) {
+		 var lat = position.coords.latitude;
+		 var lon = position.coords.longitude;
+		
+		$scope.firstlat = lat;
+		$scope.firstlon = lon;
+		
+	 }
+	 
+	 $scope.getLocation = function () {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
+		}
+		else {
+			$scope.error = "Geolocation is not supported by this browser.";
+		}
+	}
+	
+	$scope.getLocation();
+	 
+	 $scope.showError = function (error) {
+		switch (error.code) {
+			case error.PERMISSION_DENIED:
+				$scope.error = "User denied the request for Geolocation."
+				break;
+			case error.POSITION_UNAVAILABLE:
+				$scope.error = "Location information is unavailable."
+				break;
+			case error.TIMEOUT:
+				$scope.error = "The request to get user location timed out."
+				break;
+			case error.UNKNOWN_ERROR:
+				$scope.error = "An unknown error occurred."
+				break;
+		}
+		$scope.$apply();
+	}
+	
 	//Invite selected phone contact
 	$scope.invite = function() {
+		
+		
+		
 		var myName = localStorage.getItem("name");
 		var myPhone = localStorage.getItem("phone");
 		
@@ -99,14 +141,19 @@
 		var secName = $scope.contact;
 		var secPhone = "test";
 		
-		if (contactArray[0] == null || contactArray[1] == "") {
+		var latitude = $scope.firstlat;
+		var longitude = $scope.firstlon;
+		var date = $scope.datum;
+		var time = $scope.tijd;
+		
+		if (contactArray[0] == null || contactArray[1] == "") { 
 			alert("Vul een naam en telefoon nummer in");
 			return false;
 		}
 		
 		$.ajax({
 			type: "GET",
-			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + contactArray[0] + "&secPhone=" + contactArray[1],
+			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + contactArray[0] + "&secPhone=" + contactArray[1] + "&firstLat=" + latitude + "&firstLon=" + longitude + "&date=" + date + "&time=" + time,
 			dataType: "json",
 			success: function(data) {
 				alert(data);
@@ -120,6 +167,7 @@
 	}
   });
   
+
 
 	// ####################################################################
 	// Location page
