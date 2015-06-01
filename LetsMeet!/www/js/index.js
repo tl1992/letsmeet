@@ -49,6 +49,17 @@ ons.ready(function() {
 						if(data[i].status == "accepted"){
 							
 							var location = 'onclick="window.open(\'geo:\'+\'38.897096,-77.036545\', \'_system\')"';
+							
+							var myDate= data[i].date;
+							myDate= myDate.split(" "); 		
+							var newDate= myDate[2]+" - "+myDate[1]+" - "+myDate[3];
+							
+							var myTime= data[i].time;
+							myTime= myTime.split(" "); 		
+							var newTime= myTime[4];
+							newTime= newTime.split(":"); 
+							var finalTime = newTime[0]+":"+newTime[1];
+							
 							var $appointment = $(
 								"<article class='block info'>" +
 									"<div class='left'>" +
@@ -62,11 +73,11 @@ ons.ready(function() {
 										"</div>" +
 										"<div class='meta'>" +
 											"<span class='icon'>&#xf073;</span> " +
-											 data[i].date +
+											  newDate +
 										"</div>" +
 										"<div class='meta'>" +
 											"<span class='icon'>&#xf017;</span>" +
-											data[i].time +
+											finalTime +
 										"</div>" +
 										"<ons-button class='btn' " + location + ">" +
 											"Navigeer" +

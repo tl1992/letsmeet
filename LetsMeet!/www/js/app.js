@@ -51,6 +51,17 @@
 		for (var i = 0; i < data.length;) {
 			
 			if(data[i].status == "pending"){
+				
+				var myDate= data[i].date;
+				myDate= myDate.split(" "); 		
+				var newDate= myDate[2]+" - "+myDate[1]+" - "+myDate[3];
+				
+				var myTime= data[i].time;
+				myTime= myTime.split(" "); 		
+				var newTime= myTime[4];
+				newTime= newTime.split(":"); 
+				var finalTime = newTime[0]+":"+newTime[1];
+				
 				var $appointment = $(
 					"<article id='id" + data[i].id + "' class='block info'>" +
 						"<div class='left'>" +
@@ -64,11 +75,11 @@
 							"</div>" +
 							"<div class='meta'>" +
 								"<span class='icon'>&#xf073;</span> " +
-								 data[i].date +
+								 newDate +
 							"</div>" +
 							"<div class='meta'>" +
 								"<span class='icon'>&#xf017;</span>" +
-								data[i].time +
+								finalTime +
 							"</div>" +
 							"<ons-button class='btn' ng-click='accept(" + data[i].id + ")'>" +
 								"Accepteren" +
