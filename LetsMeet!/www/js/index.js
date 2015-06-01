@@ -43,10 +43,32 @@ ons.ready(function() {
 					document.getElementById("meetings").innerHTML = "";
 					
 					for (var i = 0; i < data.length;) {
-
-						document.getElementById("meetings").innerHTML +=
-							"Naam: " + data[i].firstUser + "<br />" +
-							"Telefoon :" + data[i].firstPhone + "<br /> <br />";
+						var location = 'onclick="window.open(\'geo:\'+\'38.897096,-77.036545\', \'_system\')"';
+						var $appointment = $(
+							"<article class='block info'>" +
+								"<div class='left'>" +
+									"<span class='icon'>&#xf0f4;</span>" +
+								"</div>" +
+								"<div class='right'>" +
+									"<h1>" + data[i].firstUser + "</h1>" +
+									"<div class='meta'>" +
+										"<span class='icon'>&#xf041;</span>" +
+										"Testlocatie" +
+									"</div>" +
+									"<div class='meta'>" +
+										"<span class='icon'>&#xf073;</span> " +
+										"01-06-2015" +
+									"</div>" +
+									"<div class='meta'>" +
+										"<span class='icon'>&#xf017;</span>" +
+										"10:00u" +
+									"</div>" +
+									"<ons-button class='btn' " + location + ">" +
+										"Navigeer" +
+									"</ons-button>" +
+								"</div>" +
+								"<div class='clear'></div>" +
+							"</article>").appendTo("#meetings");
 						i++;
 					}
 					
