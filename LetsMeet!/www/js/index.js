@@ -57,11 +57,11 @@ ons.ready(function() {
 									"</div>" +
 									"<div class='meta'>" +
 										"<span class='icon'>&#xf073;</span> " +
-										"01-06-2015" +
+										 data[i].date +
 									"</div>" +
 									"<div class='meta'>" +
 										"<span class='icon'>&#xf017;</span>" +
-										"10:00u" +
+										data[i].time +
 									"</div>" +
 									"<ons-button class='btn' " + location + ">" +
 										"Navigeer" +
