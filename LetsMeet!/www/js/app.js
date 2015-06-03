@@ -151,9 +151,7 @@
 	$scope.accept = function(meetingId) {
 		var latitude = $scope.firstlat;
 		var longitude = $scope.firstlon;
-		
-		alert(latitude + " " + longitude);
-		
+
 		$.ajax({
 			type: "GET",
 			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&secondLat=" + latitude + "&secondLong=" + longitude + "&mode=update",
