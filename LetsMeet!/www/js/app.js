@@ -110,10 +110,53 @@
 	}
 	});
 	
+	$scope.showPosition = function (position) {
+		 var lat = position.coords.latitude;
+		 var lon = position.coords.longitude;
+		
+		$scope.firstlat = lat;
+		$scope.firstlon = lon;
+		
+	 }
+	 
+	 $scope.getLocation = function () {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
+		}
+		else {
+			$scope.error = "Geolocation is not supported by this browser.";
+		}
+	}
+	
+	$scope.getLocation();
+	 
+	 $scope.showError = function (error) {
+		switch (error.code) {
+			case error.PERMISSION_DENIED:
+				$scope.error = "User denied the request for Geolocation."
+				break;
+			case error.POSITION_UNAVAILABLE:
+				$scope.error = "Location information is unavailable."
+				break;
+			case error.TIMEOUT:
+				$scope.error = "The request to get user location timed out."
+				break;
+			case error.UNKNOWN_ERROR:
+				$scope.error = "An unknown error occurred."
+				break;
+		}
+		$scope.$apply();
+	}
+	
 	$scope.accept = function(meetingId) {
+		var latitude = $scope.firstlat;
+		var longitude = $scope.firstlon;
+		
+		alert(latitude + " " + longitude);
+		
 		$.ajax({
 			type: "GET",
-			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&mode=update",
+			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&secondLat=" + latitude + "&secondLong=" + longitude + "&mode=update",
 			dataType: "json",
 			success: function(data) {
 				alert('Uitnodiging geaccepteerd');
@@ -126,6 +169,9 @@
 		});
 	}
 	$scope.remove = function(meetingId) {
+		var latitude = $scope.firstlat;
+		var longitude = $scope.firstlon;
+		
 		$.ajax({
 			type: "GET",
 			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&mode=remove",
