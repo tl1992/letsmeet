@@ -3,16 +3,21 @@
   var module = angular.module('app', ['onsen']);  
   
 // ####################################################################
-// Registration page
+// Registration page (index.html)
 // ####################################################################
   module.controller('LoginController', function($scope) {
 	$scope.register = function() {
 		var name = $scope.name;
-		var phone = $scope.phone;
-		if (name == null || phone == "") {
+		var phoneValue = $scope.phone;		
+		
+		if (name == null || phoneValue == "") {
 			alert("Vul een naam en telefoon nummer in");
 			return false;
 		}
+		
+		var trimPhone = phoneValue.replace(/\s+/g, '');
+		var phone = trimPhone.replace('+316', '06');
+	
 		localStorage.setItem("name", name);
 		localStorage.setItem("phone", phone);
 		myNavigator.pushPage('dashboard.html', { animation : 'slide' } );
@@ -160,23 +165,24 @@
 			document.getElementById("valueContact").innerHTML = "";
 			for (var i = 0; i < contacts.length; i++) {
 				
-				var person = contacts[i].displayName + "," + contacts[i].phoneNumbers[0].value;
+				var trimPhone = contacts[i].phoneNumbers[0].value.replace(/\s+/g, '');
+				var phone = trimPhone.replace('+316', '06');
+				
+				var person = contacts[i].displayName + "," + phone;
 				
 				var $newElement = $(
 					"<label>" +
 					"<input type='radio' ng-model='contact' name='contact' value='" + person + "'>" +
 					contacts[i].displayName + "<br />" +
-					"Mobiel: " + contacts[i].phoneNumbers[0].value +
+					"Mobiel: " + phone +
 					"</label><br /><br />").appendTo("#valueContact");
 					$compile($newElement)($scope);
 					
 			}
-
 		};
 		function onError(contactError) {
 			alert('onError!');
 		}
-		
 		return false;
 	}
 	
@@ -221,9 +227,6 @@
 	
 	//Invite selected phone contact
 	$scope.invite = function() {
-		
-		
-		
 		var myName = localStorage.getItem("name");
 		var myPhone = localStorage.getItem("phone");
 		
@@ -241,7 +244,7 @@
 			alert("Vul een naam en telefoon nummer in");
 			return false;
 		}
-		
+
 		$.ajax({
 			type: "GET",
 			url: "http://dannycoenen.nl/app/letsmeet/register.php?name=" + myName + "&phone=" + myPhone + "&secName=" + contactArray[0] + "&secPhone=" + contactArray[1] + "&firstLat=" + latitude + "&firstLon=" + longitude + "&date=" + date + "&time=" + time + "&status=" + "pending",
