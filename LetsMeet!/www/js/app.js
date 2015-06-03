@@ -55,50 +55,52 @@
 		
 		for (var i = 0; i < data.length;) {
 			
-			if(data[i].status == "pending"){
-				
-				var myDate= data[i].date;
-				myDate= myDate.split(" "); 		
-				var newDate= myDate[2]+" - "+myDate[1]+" - "+myDate[3];
-				
-				var myTime= data[i].time;
-				myTime= myTime.split(" "); 		
-				var newTime= myTime[4];
-				newTime= newTime.split(":"); 
-				var finalTime = newTime[0]+":"+newTime[1];
-				
-				var $appointment = $(
-					"<article id='id" + data[i].id + "' class='block info'>" +
-						"<div class='left'>" +
-							"<span class='icon'>&#xf0f4;</span>" +
-						"</div>" +
-						"<div class='right'>" +
-							"<h1>" + data[i].firstUser + "</h1>" +
-							"<div class='meta'>" +
-								"<span class='icon'>&#xf041;</span>" +
-								"Testlocatie" +
-							"</div>" +
-							"<div class='meta'>" +
-								"<span class='icon'>&#xf073;</span> " +
-								 newDate +
-							"</div>" +
-							"<div class='meta'>" +
-								"<span class='icon'>&#xf017;</span>" +
-								finalTime +
-							"</div>" +
-							"<ons-button class='btn' ng-click='accept(" + data[i].id + ")'>" +
-								"Accepteren" +
-							"</ons-button>" +
-							"<ons-button class='btn' ng-click='remove(" + data[i].id + ")'>" +
-								"Afwijzen" +
-							"</ons-button>" +
-						"</div>" +
-						"<div class='clear'></div>" +
-					"</article>").appendTo("#notifications");
-					$compile($appointment)($scope);
+			if(data[i].secondPhone == myPhone){
+				if(data[i].status == "pending"){
 					
-					$scope.meetingId = data[i].id;
+					var myDate= data[i].date;
+					myDate= myDate.split(" "); 		
+					var newDate= myDate[2]+" - "+myDate[1]+" - "+myDate[3];
+					
+					var myTime= data[i].time;
+					myTime= myTime.split(" "); 		
+					var newTime= myTime[4];
+					newTime= newTime.split(":"); 
+					var finalTime = newTime[0]+":"+newTime[1];
+					
+					var $appointment = $(
+						"<article id='id" + data[i].id + "' class='block info'>" +
+							"<div class='left'>" +
+								"<span class='icon'>&#xf0f4;</span>" +
+							"</div>" +
+							"<div class='right'>" +
+								"<h1>" + data[i].firstUser + "</h1>" +
+								"<div class='meta'>" +
+									"<span class='icon'>&#xf041;</span>" +
+									"Testlocatie" +
+								"</div>" +
+								"<div class='meta'>" +
+									"<span class='icon'>&#xf073;</span> " +
+									 newDate +
+								"</div>" +
+								"<div class='meta'>" +
+									"<span class='icon'>&#xf017;</span>" +
+									finalTime +
+								"</div>" +
+								"<ons-button class='btn' ng-click='accept(" + data[i].id + ")'>" +
+									"Accepteren" +
+								"</ons-button>" +
+								"<ons-button class='btn' ng-click='remove(" + data[i].id + ")'>" +
+									"Afwijzen" +
+								"</ons-button>" +
+							"</div>" +
+							"<div class='clear'></div>" +
+						"</article>").appendTo("#notifications");
+						$compile($appointment)($scope);
+						
+						$scope.meetingId = data[i].id;
 				}
+			}
 			i++;
 		}
 		

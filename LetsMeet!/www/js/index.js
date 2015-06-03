@@ -24,8 +24,10 @@ ons.ready(function() {
 					
 					for (var i = 0; i < data.length;) {
 						
-						if(data[i].status == "pending"){
-							notifications++;
+						if(data[i].secondPhone == myPhone){
+							if(data[i].status == "pending"){
+								notifications++;
+							}
 						}
 						
 						if(data[i].status == "accepted"){
