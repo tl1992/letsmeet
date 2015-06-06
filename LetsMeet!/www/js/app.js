@@ -321,7 +321,14 @@
 		 $scope.showPosition = function (position) {
 			 
 			var pyrmont = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			var mapOptions = {
+				zoom: 16,
+				center: pyrmont,
+				mapTypeId: google.maps.MapTypeId.TERRAIN
+			}
 
+			$scope.map = new google.maps.Map(document.getElementById('maps'), mapOptions);
+			
 			 var request = {
 				location: pyrmont,
 				radius: 2000,
@@ -335,41 +342,51 @@
 		 }
 		 
 		 $scope.callback = function (results, status, pagination) {
-		  if (status == google.maps.places.PlacesServiceStatus.OK) {
-			$scope.createDetails(results);
+		  if (status != google.maps.places.PlacesServiceStatus.OK) {
+			return;
+		  } else {
+			$scope.createMarkers(results);
+
+			/*if (pagination.hasNextPage) {
+			  var moreButton = document.getElementById('more');
+
+			  moreButton.disabled = false;
+
+			  google.maps.event.addDomListenerOnce(moreButton, 'click',
+				  function() {
+				moreButton.disabled = true;
+				pagination.nextPage();
+			  });
+			}*/
 		  }
 		}
-		$scope.createDetails = function (places) {
+		$scope.createMarkers = function (places) {
 		  $scope.bounds = new google.maps.LatLngBounds();
 
 		  for (var i = 0, place; place = places[i]; i++) {
-			  
-			 var request = {
-				placeId: place.place_id
+			var image = {
+			  url: place.icon,
+			  size: new google.maps.Size(71, 71),
+			  origin: new google.maps.Point(0, 0),
+			  anchor: new google.maps.Point(17, 34),
+			  scaledSize: new google.maps.Size(25, 25)
 			};
 
-			$scope.serviceDetail = new google.maps.places.PlacesService(map);
-			$scope.serviceDetail.getDetails(request, function(place) {
-				 //alert(place.international_phone_number);
-				
-				$scope.placesList.innerHTML += '<li>' + place.name + '</li>';
-				$scope.placesList.innerHTML += '<li>' + place.geometry.location + '</li>';
-				$scope.placesList.innerHTML += '<li><img src=' + place.icon + ' /></li>';
-				$scope.placesList.innerHTML += '<li>' + place.vicinity + '</li>';
-				$scope.placesList.innerHTML += '<li>' + place.international_phone_number + '</li>';
-				$scope.placesList.innerHTML += '<li>' + place.opening_hours.open_now  + '</li>';
-				$scope.placesList.innerHTML += '<li>' + place.url + '</li>';
+			var marker = new google.maps.Marker({
+			  map: $scope.map,
+			  icon: image,
+			  title: place.name,
+			  position: place.geometry.location
 			});
-			//console.log(place);
+
+			$scope.placesList.innerHTML += '<li>' + place.name + '</li>';
 
 			$scope.bounds.extend(place.geometry.location);
-			
-			if (i === 0) { break; }
-			
 		  }
+		  $scope.map.fitBounds($scope.bounds);
 		}
 		 
-		 $scope.showError = function (error) { 
+		 $scope.showError = function (error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
                     $scope.error = "User denied the request for Geolocation."
