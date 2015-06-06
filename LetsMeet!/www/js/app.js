@@ -214,12 +214,12 @@
 				var placeAdress = place.vicinity;
 				var placePhone = place.international_phone_number;
 				var placeURL = place.url;*/
-				alert(place.icon);
+				//alert(place.icon);
 				//return false;
 				var test = "test";
 				$.ajax({
 					type: "GET",
-					url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&secondLat=" + latitude + "&secondLong=" + longitude + "&locName=" + place.name + "&Loclatlng=" + place.geometry.location + "&locIcon=" + place.icon + "&locTel=" + place.international_phone_number + "&locUrl=" + place.url + "&locAdres=" + place.vicinity + "&mode=update",
+					url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&secondLat=" + latitude + "&secondLong=" + longitude + "&locName=" + place.name + "&loclatlng=" + place.geometry.location + "&locIcon=" + place.icon + "&locTel=" + place.international_phone_number + "&locUrl=" + place.url + "&locAdres=" + place.vicinity + "&mode=update",
 					dataType: "json",
 					success: function(data) {
 						alert('Uitnodiging geaccepteerd');
