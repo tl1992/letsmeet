@@ -55,7 +55,7 @@
 		
 		for (var i = 0; i < data.length;) {
 			
-			if(data[i].secondPhone == myPhone){
+			if(data[i].secondPhone == myPhone){ 
 				if(data[i].status == "pending"){
 					
 					var myDate= data[i].date;
@@ -70,15 +70,7 @@
 					
 					var $appointment = $(
 						"<article id='id" + data[i].id + "' class='block info'>" +
-							"<div class='left'>" +
-								"<span class='icon'>&#xf0f4;</span>" +
-							"</div>" +
-							"<div class='right'>" +
 								"<h1>" + data[i].firstUser + "</h1>" +
-								"<div class='meta'>" +
-									"<span class='icon'>&#xf041;</span>" +
-									"Testlocatie" +
-								"</div>" +
 								"<div class='meta'>" +
 									"<span class='icon'>&#xf073;</span> " +
 									 newDate +
@@ -93,7 +85,6 @@
 								"<ons-button class='btn' ng-click='remove(" + data[i].id + ")'>" +
 									"Afwijzen" +
 								"</ons-button>" +
-							"</div>" +
 							"<div class='clear'></div>" +
 						"</article>").appendTo("#notifications");
 						$compile($appointment)($scope);
@@ -155,13 +146,17 @@
 		var firstlat = Number(firstlat);
 		var firstlon = Number(firstlon);
 		
-		var lat = (firstlat + latitude) / 2;					
+			
 		var lon = (firstlon + longitude) / 2;
+		var lat = (firstlat + latitude) / 2;
 
+		var lat = lat.toString().substring(0, 9);
+		var lon = lon.toString().substring(0, 9);
 		
+			
 		$scope.initialize = function() {
 		
-			var pyrmont = new google.maps.LatLng(latitude, longitude);
+			var pyrmont = new google.maps.LatLng(lat, lon);
 		
 			var request = {
 				location: pyrmont,

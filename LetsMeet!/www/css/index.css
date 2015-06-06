@@ -169,6 +169,11 @@ header.headerImage .roundBtn{
 #container.dashboard {
 	margin: 18px auto 0;
 }
+#dashboard #container .btn {
+	display: inline-block;
+	padding: 10px;
+	margin-right: 10px;
+}
 #container .btn {
 	display: block;
 	font-size: 16px;

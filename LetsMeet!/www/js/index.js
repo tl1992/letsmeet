@@ -28,10 +28,14 @@ ons.ready(function() {
 								notifications++;
 							}
 						}
-						
+						 
 						if(data[i].status == "accepted"){
 							
-							var location = 'onclick="window.open(\'geo:\'+\'' +data[i].firstLat+ ','+data[i].firstLon+'\', \'_system\')"';
+							var locatieString = data[i].loclatlng;
+							locatieString = locatieString.replace('(','');
+							locatieString = locatieString.replace(')','');
+							
+							var location = 'onclick="window.open(\'geo:\'+\'' +locatieString+'\', \'_system\')"';
 							var url = 'onclick="window.open(\'\'+\'' +data[i].locUrl+'\', \'_system\')"';
 							var phone = 'onclick="window.open(\'tel:\'+\'' +data[i].locTel+'\', \'_system\')"';
 							//alert(location);
@@ -68,6 +72,7 @@ ons.ready(function() {
 											"<span class='icon'>&#xf017;</span>" +
 											finalTime +
 										"</div>" +
+										"<div class='clear'></div>" +
 										"<ons-button class='btn' " + location + ">" +
 											"Navigeer" +
 										"</ons-button>" +
