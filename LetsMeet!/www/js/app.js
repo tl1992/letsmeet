@@ -149,24 +149,102 @@
 	}
 	
 	$scope.accept = function(meetingId, firstlat, firstlon) {
-		var latitude = $scope.secondlat;
-		var longitude = $scope.secondlon;
+		var latitude = Number($scope.secondlat);
+		var longitude = Number($scope.secondlon);
 		
-		alert(firstlat + "\n" + firstlon);
+		var firstlat = Number(firstlat);
+		var firstlon = Number(firstlon);
+		
+		var lat = (firstlat + latitude) / 2;					
+		var lon = (firstlon + longitude) / 2;
 
-		$.ajax({
-			type: "GET",
-			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&secondLat=" + latitude + "&secondLong=" + longitude + "&mode=update",
-			dataType: "json",
-			success: function(data) {
-				alert('Uitnodiging geaccepteerd');
-				var articleId = "#id" + meetingId;
-				$(articleId).remove();
-			},
-			error: function(data) {
-				alert("ERROR");
-			}
-		});
+		
+		$scope.initialize = function() {
+		
+			var pyrmont = new google.maps.LatLng(latitude, longitude);
+		
+			var request = {
+				location: pyrmont,
+				radius: 2000,
+				types: ['restaurant']
+			};
+
+			//$scope.placesList = document.getElementById('places');
+			$scope.service = new google.maps.places.PlacesService(map);
+			$scope.service.nearbySearch(request, $scope.callback);
+			 //alert(15236);
+		}
+		 $scope.callback = function (results, status) {
+				//alert("yrdy");
+				//alert(status);
+		  if (status != google.maps.places.PlacesServiceStatus.OK) {
+			return;
+		  } else {
+			$scope.createDetails(results);
+
+			/*if (pagination.hasNextPage) {
+			  var moreButton = document.getElementById('more');
+
+			  moreButton.disabled = false;
+
+			  google.maps.event.addDomListenerOnce(moreButton, 'click',
+				  function() {
+				moreButton.disabled = true;
+				pagination.nextPage();
+			  });
+			}*/
+		  }
+		}
+		$scope.createDetails = function (places) { 
+		
+		  $scope.bounds = new google.maps.LatLngBounds();
+
+		  for (var i = 0, place; place = places[i]; i++) {
+			  
+			 var request = {
+				placeId: place.place_id
+			};
+//alert(place.place_id);
+			$scope.serviceDetail = new google.maps.places.PlacesService(map);
+			$scope.serviceDetail.getDetails(request, function(place) {
+				
+			/*	var placeName = place.name;
+				var placeLatLng = place.geometry.location;
+				var placeImage = place.icon;
+				var placeAdress = place.vicinity;
+				var placePhone = place.international_phone_number;
+				var placeURL = place.url;*/
+				alert(place.icon);
+				//return false;
+				var test = "test";
+				$.ajax({
+					type: "GET",
+					url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&secondLat=" + latitude + "&secondLong=" + longitude + "&locName=" + place.name + "&Loclatlng=" + place.geometry.location + "&locIcon=" + place.icon + "&locTel=" + place.international_phone_number + "&locUrl=" + place.url + "&locAdres=" + place.vicinity + "&mode=update",
+					dataType: "json",
+					success: function(data) {
+						alert('Uitnodiging geaccepteerd');
+						var articleId = "#id" + meetingId;
+						$(articleId).remove();
+					},
+					error: function(data) {
+						alert("ERROR");
+					}
+				});
+				
+			});
+			//console.log(place);
+
+			$scope.bounds.extend(place.geometry.location);
+			
+			if (i === 0) { break; }
+			
+			
+		  }
+		}
+		$scope.initialize();
+		
+
+		
 	}
 	$scope.remove = function(meetingId) {
 		$.ajax({
@@ -308,115 +386,6 @@
   
 
 
-	// ####################################################################
-	// Location page
-	// ####################################################################
-  
- 	//Angular App Module and Controller
-	angular.module('mapsApp', [])
-	module.controller('MapCtrl', function ($scope) {
-		
-		
-		 $scope.showPosition = function (position) {
-			 
-			var pyrmont = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-			var mapOptions = {
-				zoom: 16,
-				center: pyrmont,
-				mapTypeId: google.maps.MapTypeId.TERRAIN
-			}
-
-			$scope.map = new google.maps.Map(document.getElementById('maps'), mapOptions);
-			
-			 var request = {
-				location: pyrmont,
-				radius: 2000,
-				types: ['restaurant']
-			  };
-
-			  $scope.placesList = document.getElementById('places');
-
-			  $scope.service = new google.maps.places.PlacesService(map);
-			  $scope.service.nearbySearch(request, $scope.callback);
-		 }
-		 
-		 $scope.callback = function (results, status, pagination) {
-		  if (status != google.maps.places.PlacesServiceStatus.OK) {
-			return;
-		  } else {
-			$scope.createMarkers(results);
-
-			/*if (pagination.hasNextPage) {
-			  var moreButton = document.getElementById('more');
-
-			  moreButton.disabled = false;
-
-			  google.maps.event.addDomListenerOnce(moreButton, 'click',
-				  function() {
-				moreButton.disabled = true;
-				pagination.nextPage();
-			  });
-			}*/
-		  }
-		}
-		$scope.createMarkers = function (places) {
-		  $scope.bounds = new google.maps.LatLngBounds();
-
-		  for (var i = 0, place; place = places[i]; i++) {
-			var image = {
-			  url: place.icon,
-			  size: new google.maps.Size(71, 71),
-			  origin: new google.maps.Point(0, 0),
-			  anchor: new google.maps.Point(17, 34),
-			  scaledSize: new google.maps.Size(25, 25)
-			};
-
-			var marker = new google.maps.Marker({
-			  map: $scope.map,
-			  icon: image,
-			  title: place.name,
-			  position: place.geometry.location
-			});
-
-			$scope.placesList.innerHTML += '<li>' + place.name + '</li>';
-
-			$scope.bounds.extend(place.geometry.location);
-		  }
-		  $scope.map.fitBounds($scope.bounds);
-		}
-		 
-		 $scope.showError = function (error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    $scope.error = "User denied the request for Geolocation."
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    $scope.error = "Location information is unavailable."
-                    break;
-                case error.TIMEOUT:
-                    $scope.error = "The request to get user location timed out."
-                    break;
-                case error.UNKNOWN_ERROR:
-                    $scope.error = "An unknown error occurred."
-                    break;
-            }
-            $scope.$apply();
-        }
-		
-		
-		$scope.getLocation = function () {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
-            }
-            else {
-                $scope.error = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        $scope.getLocation();
-
-	});
-  
  
   
 })();
