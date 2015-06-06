@@ -87,7 +87,7 @@
 									"<span class='icon'>&#xf017;</span>" +
 									finalTime +
 								"</div>" +
-								"<ons-button class='btn' ng-click='accept(" + data[i].id + ")'>" +
+								"<ons-button class='btn' ng-click='accept(" + data[i].id + "," + data[i].firstLat + "," + data[i].firstLon + ")'>" +
 									"Accepteren" +
 								"</ons-button>" +
 								"<ons-button class='btn' ng-click='remove(" + data[i].id + ")'>" +
@@ -114,8 +114,8 @@
 		 var lat = position.coords.latitude;
 		 var lon = position.coords.longitude;
 		
-		$scope.firstlat = lat;
-		$scope.firstlon = lon;
+		$scope.secondlat = lat;
+		$scope.secondlon = lon;
 		
 	 }
 	 
@@ -148,9 +148,11 @@
 		$scope.$apply();
 	}
 	
-	$scope.accept = function(meetingId) {
-		var latitude = $scope.firstlat;
-		var longitude = $scope.firstlon;
+	$scope.accept = function(meetingId, firstlat, firstlon) {
+		var latitude = $scope.secondlat;
+		var longitude = $scope.secondlon;
+		
+		alert(firstlat + "\n" + firstlon);
 
 		$.ajax({
 			type: "GET",
@@ -167,9 +169,6 @@
 		});
 	}
 	$scope.remove = function(meetingId) {
-		var latitude = $scope.firstlat;
-		var longitude = $scope.firstlon;
-		
 		$.ajax({
 			type: "GET",
 			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&mode=remove",
