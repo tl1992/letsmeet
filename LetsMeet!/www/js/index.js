@@ -77,10 +77,10 @@ ons.ready(function() {
 											"Navigeer" +
 										"</ons-button>" +
 										"<ons-button class='btn' " + phone + ">" +
-											"Bellen" +
+											"<span class='icon'>&#xf095;</span>" +
 										"</ons-button>" +
 										"<ons-button class='btn' " + url + ">" +
-											"Website" +
+											"<span class='icon'>&#xf0ac;</span>" +
 										"</ons-button>" +
 									"</div>" +
 									"<div class='clear'></div>" +
