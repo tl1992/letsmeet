@@ -10,8 +10,7 @@ ons.ready(function() {
 			var myName = localStorage.getItem("name");
 			var myPhone = localStorage.getItem("phone");
 			
-			// Controleer elke 5 seconden op uitnodigingen
-			setInterval(function(){
+			function fullCheck(){
 				$.ajax({
 				type: "GET",
 				url: "http://dannycoenen.nl/app/letsmeet/check.php?name=" + myName + "&phone=" + myPhone,
@@ -155,7 +154,15 @@ ons.ready(function() {
 					$('#count').remove();
 				}
 				});
-			},2000);
+			}
+			
+			
+			// Controleer elke 5 seconden op uitnodigingen
+			fullCheck();
+			setInterval(function(){
+				fullCheck();
+			},10000);
+			
 		}
 	}, false);
 		
