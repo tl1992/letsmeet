@@ -270,7 +270,7 @@ header.headerImage .roundBtn{
 	font-weight: bold;
 }
 #container article .left {
-	width: 22%;
+	width: 15%;
 	float: left;
 }
 #container article .left .icon {
@@ -285,7 +285,7 @@ header.headerImage .roundBtn{
 	border: none;
 }
 #container article .right {
-	width: 78%;
+	width: 85%;
 	float: left;
 }
 #container form input {

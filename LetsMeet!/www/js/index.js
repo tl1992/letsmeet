@@ -32,6 +32,8 @@ ons.ready(function() {
 						if(data[i].status == "accepted"){
 							
 							var location = 'onclick="window.open(\'geo:\'+\'' +data[i].firstLat+ ','+data[i].firstLon+'\', \'_system\')"';
+							var url = 'onclick="window.open(\'\'+\'' +data[i].locUrl+'\', \'_system\')"';
+							var phone = 'onclick="window.open(\'tel:\'+\'' +data[i].locTel+'\', \'_system\')"';
 							//alert(location);
 							
 							var myDate= data[i].date;
@@ -47,13 +49,16 @@ ons.ready(function() {
 							var $appointment = $(
 								"<article class='block info'>" +
 									"<div class='left'>" +
-										"<span class='icon'>&#xf0f4;</span>" +
+										"<img width='40' src='"+ data[i].locIcon +"'/>" +
 									"</div>" +
 									"<div class='right'>" +
 										"<h1>" + data[i].firstUser + "</h1>" +
+										"<div class='meta' style='display: block;'>" +
+											data[i].locName +
+										"</div>" +
 										"<div class='meta'>" +
 											"<span class='icon'>&#xf041;</span>" +
-											"Testlocatie" +
+											 data[i].locAdres +
 										"</div>" +
 										"<div class='meta'>" +
 											"<span class='icon'>&#xf073;</span> " +
@@ -65,6 +70,12 @@ ons.ready(function() {
 										"</div>" +
 										"<ons-button class='btn' " + location + ">" +
 											"Navigeer" +
+										"</ons-button>" +
+										"<ons-button class='btn' " + phone + ">" +
+											"Bellen" +
+										"</ons-button>" +
+										"<ons-button class='btn' " + url + ">" +
+											"Website" +
 										"</ons-button>" +
 									"</div>" +
 									"<div class='clear'></div>" +
