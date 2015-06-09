@@ -28,114 +28,9 @@
 // ####################################################################
 // Dashboard page
 // ####################################################################
-  module.controller('dasboardController', function($scope, $compile, $interval) {
+  module.controller('NotificationController', function($scope) {
 	
-	$scope.onGesture = function(meetingId) {
-		alert('swipe detected on: ' + meetingId);
-	}
-	
-	intervalFunction($scope);
-	$interval(intervalFunction($scope), 5000);
-	
-	function intervalFunction($scope){
-		var myName = localStorage.getItem("name");
-		var myPhone = localStorage.getItem("phone");
-		
-		$.ajax({
-		type: "GET",
-		url: "http://dannycoenen.nl/app/letsmeet/check.php?name=" + myName + "&phone=" + myPhone,
-		dataType: "json",
-		success: function(data) {
-			
-			$('#count').remove();
-			var notifications = 0;
-			var $appointment = "";			
-			
-			for (var i = 0; i < data.length;) {
-				
-				if(data[i].secondPhone == myPhone){
-					if(data[i].status == "pending"){
-						notifications++;
-					}
-				}
-				 
-				if(data[i].status == "accepted"){
-					
-					var locatieString = data[i].loclatlng;
-					locatieString = locatieString.replace('(','');
-					locatieString = locatieString.replace(')','');
-					
-					var location = 'onclick="window.open(\'geo:\'+\'' +locatieString+'\', \'_system\')"';
-					var url = 'onclick="window.open(\'\'+\'' +data[i].locUrl+'\', \'_system\')"';
-					var phone = 'onclick="window.open(\'tel:\'+\'' +data[i].locTel+'\', \'_system\')"';
-					//alert(location);
-					
-					var myDate= data[i].date;
-					myDate= myDate.split(" "); 		
-					var newDate= myDate[2]+" - "+myDate[1]+" - "+myDate[3];
-					
-					var myTime= data[i].time;
-					myTime= myTime.split(" "); 		
-					var newTime= myTime[4];
-					newTime= newTime.split(":"); 
-					var finalTime = newTime[0]+":"+newTime[1];
-					
-					$appointment += 
-						//"<ons-gesture-detector ng-swipeleft='onGesture("+ data[i].id +")'>" + 
-							"<article class='block info'>" +
-								"<div class='left'>" +
-									"<img width='40' src='"+ data[i].locIcon +"'/>" +
-								"</div>" +
-								"<div class='right'>" +
-									"<h1>" + data[i].firstUser + "</h1>" +
-									"<div class='meta' style='display: block;'>" +
-										data[i].locName +
-									"</div>" +
-									"<div class='meta'>" +
-										"<span class='icon'>&#xf041;</span>" +
-										 data[i].locAdres +
-									"</div>" +
-									"<div class='meta'>" +
-										"<span class='icon'>&#xf073;</span> " +
-										  newDate +
-									"</div>" +
-									"<div class='meta'>" +
-										"<span class='icon'>&#xf017;</span>" +
-										finalTime +
-									"</div>" +
-									"<div class='clear'></div>" +
-									"<ons-button class='btn' " + location + ">" +
-										"Navigeer" +
-									"</ons-button>" +
-									"<ons-button class='btn' " + phone + ">" +
-										"<span class='icon'>&#xf095;</span>" +
-									"</ons-button>" +
-									"<ons-button class='btn' " + url + ">" +
-										"<span class='icon'>&#xf0ac;</span>" +
-									"</ons-button>" +
-								"</div>" +
-								"<div class='clear'></div>" +
-							"</article>"
-						//+ "</ons-gesture-detector>"
-					;
-						
-				}
-				i++;
-			}
-			
-			$compile(document.getElementById("meetings").innerHTML = $appointment)($scope);
-			
-			if(notifications > 0){
-				$('<div id="count"></div>').insertAfter('#notification');
-				document.getElementById("count").innerHTML = notifications;
-			}
-			
-		},
-		error: function(data) {
-			//alert("ERROR");
-			$('#count').remove();
-		}
-		});
+	$scope.checkFunction = function() {
 		
 	}
 	
@@ -144,22 +39,7 @@
 // ####################################################################
 // Notification page
 // ####################################################################
-  module.controller('NotificationPageController', function($scope, $compile, $interval) {
-	
-	/*
-	$interval(intervalFunction($scope), 2000);
-	
-	function intervalFunction($scope){
-		
-		function isEmpty( el ){
-			return !$.trim(el.html())
-		}
-			if (isEmpty($('#element'))) {
-			myNavigator.pushPage('dashboard.html', { animation : 'fade' } );
-		}
-
-	}
-	*/
+  module.controller('NotificationPageController', function($scope, $compile) {
 	
 	var myName = localStorage.getItem("name");
 	var myPhone = localStorage.getItem("phone");

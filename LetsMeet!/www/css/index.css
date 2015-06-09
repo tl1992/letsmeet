@@ -55,6 +55,7 @@ span.icon{font-family:'FontAwesome';}
 
 }
 
+
 body {
 	background: #f3f3f3;
 	font-family: 'roboto_condensedregular' !important;
@@ -344,7 +345,7 @@ header.headerImage .roundBtn{
   cursor: pointer;
 }
 
-#map{display:none;}
+
 
 /* CSS for Mobile 600px and below */
 @media (max-width: 640px) {
