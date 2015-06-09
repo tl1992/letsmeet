@@ -11,24 +11,21 @@
 		<article id="invite" class="block info">
             <h1>Zoeken naar contacten</h1>
             <form name="invitation" ng-submit="searchContact()" method="post">
-                <input type="text" ng-model="name" placeholder="Naam">
-                <input type="submit" class="btn" value="Zoeken">
+                <input class="search" type="text" ng-model="name" placeholder="Naam">
+                <input class="searchbtn btn icon" type="submit" value="&#xf002;">
             </form>
-        </article>
-        
-        <article id="inviteForm" class="block info">
             <form name="invitation" ng-submit="invite()" method="post">
-				<h1>Selecteer datum en tijd</h1>
-				<input type="date" ng-model="datum">
-				<input type="time" ng-model="tijd">
 				
-				<h1>Selecteer contactpersoon</h1>
                 <div id="valueContact" ng-bind-html="myHTML">Contact niet gevonden
-                
+                </div>
                 <input type="hidden" ng-model="firstlat">
 				<input type="hidden" ng-model="firstlon">
+				
+				<h1>Selecteer datum en tijd</h1>
+				<input class="small" type="date" value="2011-01-13" ng-model="datum">
+				<input class="small last" type="time" value="selecteer tijd" ng-model="tijd">
 
-                </div>
+                
                 <input type="submit" class="btn" value="Uitnodiging versturen">
             </form>
         </article> 
