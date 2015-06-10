@@ -187,7 +187,7 @@ header.headerImage .roundBtn{
 }
 #dashboard #container .btn {
 	display: inline-block;
-	padding: 10px 15px;
+	padding: 10px 14px;
 	margin-right: 10px;
 }
 #container .btn {
@@ -209,6 +209,9 @@ header.headerImage .roundBtn{
 }
 #container .btn:hover {
 	background: #f29038;
+}
+#container .removeBtn{
+	background:#f23838;
 }
 .roundBtn {
 	background: #df823d;

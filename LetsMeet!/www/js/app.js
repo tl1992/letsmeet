@@ -38,6 +38,22 @@
   
   module.controller('dasboardController', function($scope, $compile, $interval) {
 	
+	$scope.removeResult = function(meetingId){
+		$.ajax({
+			type: "GET",
+			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&mode=remove",
+			dataType: "json",
+			success: function(data) {
+				alert('Afspraak verwijdert');
+				var articleId = "#id" + meetingId;
+				$(articleId).remove();
+			},
+			error: function(data) {
+				alert("ERROR");
+			}
+		});
+	}
+	
 	intervalFunction();
 	$interval(intervalFunction, 5000);
 	
@@ -53,7 +69,8 @@
 			
 			$('#count').remove();
 			var notifications = 0;
-			var $appointment = "";
+			//var $appointment = "";
+			document.getElementById("meetings").innerHTML = "";
 			
 			for (var i = 0; i < data.length;) {
 				
@@ -72,6 +89,7 @@
 					var location = 'onclick="window.open(\'geo:\'+\'' +locatieString+'\', \'_system\')"';
 					var url = 'onclick="window.open(\'\'+\'' +data[i].locUrl+'\', \'_system\')"';
 					var phone = 'onclick="window.open(\'tel:\'+\'' +data[i].locTel+'\', \'_system\')"';
+					var remove = 'ng-click="removeResult(' + data[i].id + ')"';
 					//alert(location);
 					
 					var myDate= data[i].date;
@@ -84,8 +102,8 @@
 					newTime= newTime.split(":"); 
 					var finalTime = newTime[0]+":"+newTime[1];
 					
-					$appointment +=
-							"<article class='block info'>" +
+					var $appointment = $(
+							"<article id='id" + data[i].id + "' class='block info'>" +
 								"<div class='left'>" +
 									"<img width='40' src='"+ data[i].locIcon +"'/>" +
 								"</div>" +
@@ -116,16 +134,18 @@
 									"<ons-button class='btn' " + url + ">" +
 										"<span class='icon'>&#xf0ac;</span>" +
 									"</ons-button>" +
+									"<ons-button class='btn removeBtn' " + remove + ">" +
+										"<span class='icon'>&#xf00d;</span>" +
+									"</ons-button>" +
 								"</div>" +
 								"<div class='clear'></div>" +
-							"</article>";
+							"</article>").appendTo("#meetings");
+							$compile($appointment)($scope);
 					;
 						
 				}
 				i++;
 			}
-			
-			document.getElementById("meetings").innerHTML = $appointment
 			
 			if(notifications > 0){
 				$('<div id="count"></div>').insertAfter('#notification');
