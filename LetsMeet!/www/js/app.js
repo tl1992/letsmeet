@@ -28,15 +28,10 @@
 // ####################################################################
 // Dashboard page
 // ####################################################################
-  module.controller('NotificationController', function($scope) {
-	
-	$scope.checkFunction = function() {
-		
-	}
-	
-  });
-  
   module.controller('dasboardController', function($scope, $compile, $interval) {
+	
+	intervalFunction();
+	$interval(intervalFunction, 5000);
 	
 	$scope.removeResult = function(meetingId){
 		$.ajax({
@@ -54,9 +49,6 @@
 		});
 	}
 	
-	intervalFunction();
-	$interval(intervalFunction, 5000);
-	
 	function intervalFunction(){
 		var myName = localStorage.getItem("name");
 		var myPhone = localStorage.getItem("phone");
@@ -69,8 +61,7 @@
 			
 			$('#count').remove();
 			var notifications = 0;
-			//var $appointment = "";
-			document.getElementById("meetings").innerHTML = "";
+			var $appointment = "";
 			
 			for (var i = 0; i < data.length;) {
 				
@@ -102,13 +93,19 @@
 					newTime= newTime.split(":"); 
 					var finalTime = newTime[0]+":"+newTime[1];
 					
-					var $appointment = $(
+					if(data[i].secondPhone == myPhone){
+						var friendName = data[i].firstUser;
+					}else{
+						var friendName = data[i].secondUser;
+					}
+					
+					$appointment += 
 							"<article id='id" + data[i].id + "' class='block info'>" +
 								"<div class='left'>" +
 									"<img width='40' src='"+ data[i].locIcon +"'/>" +
 								"</div>" +
 								"<div class='right'>" +
-									"<h1>" + data[i].firstUser + "</h1>" +
+									"<h1>" + friendName + "</h1>" +
 									"<div class='meta' style='display: block;'>" +
 										data[i].locName +
 									"</div>" +
@@ -139,13 +136,14 @@
 									"</ons-button>" +
 								"</div>" +
 								"<div class='clear'></div>" +
-							"</article>").appendTo("#meetings");
-							$compile($appointment)($scope);
-					;
+							"</article>";
 						
 				}
 				i++;
 			}
+			
+			document.getElementById("meetings").innerHTML = "";
+			$compile($($appointment).appendTo("#meetings"))($scope);
 			
 			if(notifications > 0){
 				$('<div id="count"></div>').insertAfter('#notification');

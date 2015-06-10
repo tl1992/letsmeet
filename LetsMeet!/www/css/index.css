@@ -210,9 +210,8 @@ header.headerImage .roundBtn{
 #container .btn:hover {
 	background: #f29038;
 }
-#container .removeBtn{
-	background:#f23838;
-}
+#container .removeBtn{background:#f23838;}
+#container .removeBtn:hover{background:#f23838;}
 .roundBtn {
 	background: #df823d;
 	padding: 15px 25px;
