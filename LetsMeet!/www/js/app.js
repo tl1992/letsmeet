@@ -345,6 +345,9 @@
 						alert('Uitnodiging geaccepteerd');
 						var articleId = "#id" + meetingId;
 						$(articleId).remove();
+						if( $('#notifications').is(':empty') ) {
+							alert('hierna sluiten');
+						}
 					},
 					error: function(data) {
 						alert("ERROR");
@@ -375,11 +378,20 @@
 				alert('Uitnodiging afgewezen');
 				var articleId = "#id" + meetingId;
 				$(articleId).remove();
+				
+				if( !$.trim( $('#notifications').html() ).length ) {
+					//alert('hierna sluiten');
+					//myNavigator.pushPage('dashboard.html', { animation : 'fade' } );
+					//myNavigator.app.backHistory();
+				}else{
+					//alert('nog niet leeg');
+				}
 			},
 			error: function(data) {
 				alert("ERROR");
 			}
 		});
+		
 	}
 	
   });
