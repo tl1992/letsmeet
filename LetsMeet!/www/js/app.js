@@ -281,7 +281,7 @@
 			
 		$scope.initialize = function() {
 		
-			var pyrmont = new google.maps.LatLng(lat, lon);
+			var pyrmont = new google.maps.LatLng(50.851368, 5.690973);
 		
 			var request = {
 				location: pyrmont,
@@ -289,30 +289,15 @@
 				types: ['restaurant']
 			};
 
-			//$scope.placesList = document.getElementById('places');
 			$scope.service = new google.maps.places.PlacesService(map);
 			$scope.service.nearbySearch(request, $scope.callback);
-			 //alert(15236);
 		}
 		 $scope.callback = function (results, status) {
-				//alert("yrdy");
-				//alert(status);
+
 		  if (status != google.maps.places.PlacesServiceStatus.OK) {
 			return;
 		  } else {
 			$scope.createDetails(results);
-
-			/*if (pagination.hasNextPage) {
-			  var moreButton = document.getElementById('more');
-
-			  moreButton.disabled = false;
-
-			  google.maps.event.addDomListenerOnce(moreButton, 'click',
-				  function() {
-				moreButton.disabled = true;
-				pagination.nextPage();
-			  });
-			}*/
 		  }
 		}
 		$scope.createDetails = function (places) { 
@@ -324,18 +309,10 @@
 			 var request = {
 				placeId: place.place_id
 			};
-//alert(place.place_id);
+
 			$scope.serviceDetail = new google.maps.places.PlacesService(map);
 			$scope.serviceDetail.getDetails(request, function(place) {
-				
-			/*	var placeName = place.name;
-				var placeLatLng = place.geometry.location;
-				var placeImage = place.icon;
-				var placeAdress = place.vicinity;
-				var placePhone = place.international_phone_number;
-				var placeURL = place.url;*/
-				//alert(place.icon);
-				//return false;
+
 				var test = "test";
 				$.ajax({
 					type: "GET",
@@ -426,11 +403,11 @@
 				var person = contacts[i].displayName + "," + phone;
 				
 				var $newElement = $(
-					"<label>" +
-					"<input type='radio' ng-model='contact' name='contact' value='" + person + "'>" +
-					contacts[i].displayName + "<br />" +
+					
+					"<input type='radio' id='label"+i+"' ng-model='contact' name='contact' value='" + person + "'>" +
+					"<label for='label"+i+"'>" +contacts[i].displayName + "<br />" +
 					"Mobiel: " + phone +
-					"</label><br /><br />").appendTo("#valueContact");
+					"</label>").appendTo("#valueContact");
 					$compile($newElement)($scope);
 					
 			}

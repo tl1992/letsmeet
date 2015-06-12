@@ -28,6 +28,8 @@ a, a *{
   transition:.3s;
 }
 
+
+
 @charset "utf-8";
 /* Structure CSS */
 
@@ -68,6 +70,7 @@ h4{ font-size: 14px; color:  #df823d; margin-bottom: 10px; text-transform: upper
 
 .error					{background: #ffbaba; border: 1px solid #d8000c; color: #d8000c; padding: 15px; margin-bottom: 20px;}
 .succes					{background: #dff2bf; border: 1px solid #4f8a10; color: #4f8a10; padding: 15px; margin-bottom: 20px;} 
+
 
 .img-responsive 	{max-width: 100%;}
 
@@ -166,6 +169,50 @@ a:hover {
 #startpage ons-toolbar ~ .page__content {
 	top: 0px !important;
 }
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+#invite input[type=radio] {
+	display: none;
+	width: auto;
+	float: none;
+}
+ 
+/*
+  Change the look'n'feel of labels (which are adjacent to radiobuttons).
+  Add some margin, padding to label
+*/
+#invite input[type=radio] + label {
+    display:block;
+    padding: 10px 12px 4px 12px;
+	border-bottom: 1px solid #ebebeb;
+	color: #2d2d2d;
+    font-size: 14px;
+	line-height: 22px;
+	font-family: 'roboto_condensedregular';
+	height: 50px;
+}
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+#invite input[type=radio]:checked + label { 
+   background-image: none;
+    background-color:#ebebeb;
+}
+#invite h1.datetime {
+	margin-top: 15px;
+}
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+  }
+  input[type="date"]:focus:before,
+  input[type="date"]:valid:before {
+    content: "";
+  }
 header.headerImage {
 	background: url(../img/header.png);
 	background-size: 100%;
