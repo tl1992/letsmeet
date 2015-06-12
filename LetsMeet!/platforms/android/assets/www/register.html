@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Period Saver</title>
+    </head>
+    <body>
+        <div class="container">
+			<header>
+				<div class="upperheader">
+				</div>
+				<div class="officialheader"> 
+				<div class="titel">
+                Registeren
+                </div>   
+				</div> 
+			</header>
+			<article class="login"> 
+            	<form action="" method="post" id="registerForm">
+				<input name="name" id="name" class="fields" type="text" placeholder="Gebruikersnaam"> 
+				<input name="password" id="password" class="fields" type="password" placeholder="Wachtwoord"> 
+                <input name="telephone" id="telephone" class="fields" type="tel" placeholder="Telefoonnummer"> 
+				
+				  <legend>Maak een keuze:</legend>
+				  <input type="radio" name="account" id="helpen" value="">
+				  <label for="helpen">Ik wil iemand helpen</label></br>
+				  <input type="radio" name="account" id="nodig" value="">
+				  <label for="nodig">Ik heb iemand nodig</label>
+				
+				<input type="submit" value="Registeren" name="submit" id="submitRegister" />
+                </form>
+			</article>
+		</div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/telephonenumber.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+        </script>
+    </body>
+</html>
