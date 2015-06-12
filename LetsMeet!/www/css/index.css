@@ -204,15 +204,19 @@ a:hover {
 #invite h1.datetime {
 	margin-top: 15px;
 }
-input[type="date"]:before {
-    content: attr(placeholder) !important;
-    color: #aaa;
-    margin-right: 0.5em;
-  }
-  input[type="date"]:focus:before,
-  input[type="date"]:valid:before {
-    content: "";
-  }
+#invite label.left,
+#invite label.right {
+	float: left;
+	text-align: center;
+	width: 50% !important;
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	color: #2d2d2d;
+    font-size: 14px;
+	line-height: 22px;
+	font-family: 'roboto_condensedregular';
+}
 header.headerImage {
 	background: url(../img/header.png);
 	background-size: 100%;
@@ -369,7 +373,7 @@ header.headerImage .roundBtn{
 	margin-bottom: 15px;
 }
 #container form input.small {
-	width: 42%;
+	width: 42.2%;
 	display: inline-block;
 	margin-right: 4.5%;
 }	
