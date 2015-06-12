@@ -22,20 +22,6 @@
     <script src="cordova.js"></script>  
     <script src="js/app.js"></script>
     <script type="text/javascript" src="js/index.js"></script> 
-    
-    <script>
-    ons.ready(function() {
-		
-		var checkName = localStorage.getItem("name");
-		var checkPhone = localStorage.getItem("phone");
-		
-		if(checkName !== null || checkPhone !== null){
-			myNavigator.pushPage('dashboard.html', { animation : 'fade' } );
-		}else{
-			myNavigator.pushPage('register.html', { animation : 'fade' } );
-		}
-    });
-    </script>
 </head>
     
 <body>
@@ -60,7 +46,7 @@
             </article>
       	</div>
         
-        <div id="container">
+        <div id="container" ng-controller="indexController">
             <article class="block info centerContent">
                 <ons-icon icon="ion-load-c" spin="true"></ons-icon>
                 <br><br>

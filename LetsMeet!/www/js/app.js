@@ -3,7 +3,63 @@
   var module = angular.module('app', ['onsen']);  
   
 // ####################################################################
-// Registration page (index.html)
+// index.html
+// ####################################################################
+  module.controller('indexController', function($scope) {	
+	$scope.showPosition = function (position) {
+		 var lat = position.coords.latitude;
+		 var lon = position.coords.longitude;
+		
+		$scope.secondlat = lat;
+		$scope.secondlon = lon;
+		
+		localStorage.setItem("lat", Number($scope.secondlat));
+		localStorage.setItem("lon", Number($scope.secondlon));
+		
+		var checkName = localStorage.getItem("name");
+		var checkPhone = localStorage.getItem("phone");
+		
+		if(checkName !== null || checkPhone !== null){
+			myNavigator.pushPage('dashboard.html', { animation : 'fade' } );
+		}else{
+			myNavigator.pushPage('register.html', { animation : 'fade' } );
+		}
+		
+	 }
+	 
+	 $scope.getLocation = function () {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
+		}
+		else {
+			$scope.error = "Geolocation is not supported by this browser.";
+		}
+	}
+	
+	$scope.getLocation();
+	 
+	 $scope.showError = function (error) {
+		switch (error.code) {
+			case error.PERMISSION_DENIED:
+				$scope.error = "User denied the request for Geolocation."
+				break;
+			case error.POSITION_UNAVAILABLE:
+				$scope.error = "Location information is unavailable."
+				break;
+			case error.TIMEOUT:
+				$scope.error = "The request to get user location timed out."
+				break;
+			case error.UNKNOWN_ERROR:
+				$scope.error = "An unknown error occurred."
+				break;
+		}
+		$scope.$apply();
+	}
+	
+  });
+
+// ####################################################################
+// Registration page
 // ####################################################################
   module.controller('LoginController', function($scope) {
 	$scope.register = function() {
@@ -28,8 +84,7 @@
 // ####################################################################
 // Dashboard page
 // ####################################################################
-  module.controller('dasboardController', function($scope, $compile, $interval) {
-	
+  module.controller('dasboardController', function($scope, $compile, $interval) {	
 	intervalFunction();
 	$interval(intervalFunction, 5000);
 	
@@ -157,8 +212,7 @@
 		}
 		});
 		
-	}
-	
+	}	
   });
   
 // ####################################################################
@@ -226,67 +280,22 @@
 	}
 	});
 	
-	$scope.showPosition = function (position) {
-		 var lat = position.coords.latitude;
-		 var lon = position.coords.longitude;
-		
-		$scope.secondlat = lat;
-		$scope.secondlon = lon;
-		
-	 }
-	 
-	 $scope.getLocation = function () {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
-		}
-		else {
-			$scope.error = "Geolocation is not supported by this browser.";
-		}
-	}
-	
-	$scope.getLocation();
-	 
-	 $scope.showError = function (error) {
-		switch (error.code) {
-			case error.PERMISSION_DENIED:
-				$scope.error = "User denied the request for Geolocation."
-				break;
-			case error.POSITION_UNAVAILABLE:
-				$scope.error = "Location information is unavailable."
-				break;
-			case error.TIMEOUT:
-				$scope.error = "The request to get user location timed out."
-				break;
-			case error.UNKNOWN_ERROR:
-				$scope.error = "An unknown error occurred."
-				break;
-		}
-		$scope.$apply();
-	}
-	
 	$scope.accept = function(meetingId, firstlat, firstlon) {
-		/*var latitude = Number($scope.secondlat);
-		var longitude = Number($scope.secondlon);
 		
 		var firstlat = Number(firstlat);
-		var firstlon = Number(firstlon);*/
+		var firstlon = Number(firstlon);
 		
-		var latitude = 50.851368;
-		var longitude = 5.690973;
-		
-		var firstlat = 52.370216;
-		var firstlon = 4.895168;
-		
-			
+		var latitude = Number(localStorage.getItem("lat"));
+		var longitude =  Number(localStorage.getItem("lon"));
+					
 		var lon = (firstlon + longitude) / 2;
 		var lat = (firstlat + latitude) / 2;
-
+		
 		var lat = lat.toString().substring(0, 9);
 		var lon = lon.toString().substring(0, 9);
 		
-			
 		$scope.initialize = function() {
-		
+			
 			var pyrmont = new google.maps.LatLng(lat, lon);
 		
 			var request = {
@@ -297,10 +306,9 @@
 
 			$scope.service = new google.maps.places.PlacesService(map);
 			$scope.service.nearbySearch(request, $scope.callback);
+			
 		}
-		 $scope.callback = function (results, status) {
-				//alert("yrdy");
-				//alert(status);
+		$scope.callback = function (results, status) {
 		  if (status != google.maps.places.PlacesServiceStatus.OK) {
 			return;
 		  } else {
@@ -308,7 +316,6 @@
 		  }
 		}
 		$scope.createDetails = function (places) { 
-		
 		  $scope.bounds = new google.maps.LatLngBounds();
 
 		  for (var i = 0, place; place = places[i]; i++) {
@@ -344,16 +351,14 @@
 			$scope.bounds.extend(place.geometry.location);
 			
 			if (i === 0) { break; }
-			
-			
+
 		  }
 		}
 		$scope.initialize();
-		
-
-		
+	
 	}
 	$scope.remove = function(meetingId) {
+				
 		$.ajax({
 			type: "GET",
 			url: "http://dannycoenen.nl/app/letsmeet/update.php?id=" + meetingId + "&mode=remove",
@@ -425,45 +430,6 @@
 		return false;
 	}
 	
-
-	$scope.showPosition = function (position) {
-		 var lat = position.coords.latitude;
-		 var lon = position.coords.longitude;
-		
-		$scope.firstlat = lat;
-		$scope.firstlon = lon;
-		
-	 }
-	 
-	 $scope.getLocation = function () {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition($scope.showPosition, $scope.showError);
-		}
-		else {
-			$scope.error = "Geolocation is not supported by this browser.";
-		}
-	}
-	
-	$scope.getLocation();
-	 
-	 $scope.showError = function (error) {
-		switch (error.code) {
-			case error.PERMISSION_DENIED:
-				$scope.error = "User denied the request for Geolocation."
-				break;
-			case error.POSITION_UNAVAILABLE:
-				$scope.error = "Location information is unavailable."
-				break;
-			case error.TIMEOUT:
-				$scope.error = "The request to get user location timed out."
-				break;
-			case error.UNKNOWN_ERROR:
-				$scope.error = "An unknown error occurred."
-				break;
-		}
-		$scope.$apply();
-	}
-	
 	//Invite selected phone contact
 	$scope.invite = function() {
 		var myName = localStorage.getItem("name");
@@ -473,9 +439,10 @@
 		
 		var secName = $scope.contact;
 		var secPhone = "test";
+	
+		var latitude = localStorage.getItem("lat");
+		var longitude = localStorage.getItem("lon");
 		
-		var latitude = $scope.firstlat;
-		var longitude = $scope.firstlon;
 		var date = $scope.datum;
 		var time = $scope.tijd;
 		
