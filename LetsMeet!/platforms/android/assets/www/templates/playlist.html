@@ -1,0 +1,36 @@
+<ion-view view-title="Superwoman">
+  <ion-content>
+ <ion-list>
+      <ion-item ng-repeat="data in user">
+      			<section class="user_image">    
+					<img src="{{data.afbeelding}}" /> 
+                </section>
+                <section class="user_name"> 
+					<span class="icon">
+					&#xf007;
+					</span>
+					{{data.title}}	
+                </section>
+                <section class="user_gear"> 
+					<h3 class="profileHeadings">Merk</h3>
+					<div class="lineProfile">
+					</div>
+					<div class="profileDescription">{{data.gear}}</div>
+                </section>
+				<section class="user_distance">
+					<h3 class="profileHeadings">Afstand</h3>
+					<div class="lineProfile">
+					</div>
+					<div class="profileDescription">50 m</div>
+				</section>
+               <button class="button contact_me" ng-click="contactme()">
+					Contact me!
+               </button>
+               <section style="" class="user_number">  	
+					{{data.telefoonnummer}} 
+               </section>			        
+      </ion-item>
+	  
+    </ion-list> 
+</ion-content>
+</ion-view> 
