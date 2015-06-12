@@ -265,11 +265,17 @@
 	}
 	
 	$scope.accept = function(meetingId, firstlat, firstlon) {
-		var latitude = Number($scope.secondlat);
+		/*var latitude = Number($scope.secondlat);
 		var longitude = Number($scope.secondlon);
 		
 		var firstlat = Number(firstlat);
-		var firstlon = Number(firstlon);
+		var firstlon = Number(firstlon);*/
+		
+		var latitude = 50.851368;
+		var longitude = 5.690973;
+		
+		var firstlat = 52.370216;
+		var firstlon = 4.895168;
 		
 			
 		var lon = (firstlon + longitude) / 2;
@@ -281,7 +287,7 @@
 			
 		$scope.initialize = function() {
 		
-			var pyrmont = new google.maps.LatLng(50.851368, 5.690973);
+			var pyrmont = new google.maps.LatLng(lat, lon);
 		
 			var request = {
 				location: pyrmont,
@@ -293,7 +299,8 @@
 			$scope.service.nearbySearch(request, $scope.callback);
 		}
 		 $scope.callback = function (results, status) {
-
+				//alert("yrdy");
+				//alert(status);
 		  if (status != google.maps.places.PlacesServiceStatus.OK) {
 			return;
 		  } else {
