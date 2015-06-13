@@ -279,6 +279,10 @@ header.headerImage .roundBtn{
 	color: #fff;
 }
 
+.appointment .btn{
+	min-height:18px; min-width:12px;
+}
+
 .block {
 	background: #fff;
 	padding: 15px;

@@ -84,7 +84,9 @@
 // ####################################################################
 // Dashboard page
 // ####################################################################
-  module.controller('dasboardController', function($scope, $compile, $interval) {	
+  module.controller('dasboardController', function($scope, $compile, $interval) {
+	  
+	var resultIdArray = "";
 	intervalFunction();
 	$interval(intervalFunction, 5000);
 	
@@ -117,6 +119,7 @@
 			$('#count').remove();
 			var notifications = 0;
 			var $appointment = "";
+			var newIdArray = "";
 			
 			for (var i = 0; i < data.length;) {
 				
@@ -127,6 +130,8 @@
 				}
 				 
 				if(data[i].status == "accepted"){
+					
+					newIdArray += data[i].id + ', ';
 					
 					var locatieString = data[i].loclatlng;
 					locatieString = locatieString.replace('(','');
@@ -155,7 +160,7 @@
 					}
 					
 					$appointment += 
-							"<article id='id" + data[i].id + "' class='block info'>" +
+							"<article id='id" + data[i].id + "' class='block info appointment'>" +
 								"<div class='left'>" +
 									"<img width='40' src='"+ data[i].locIcon +"'/>" +
 								"</div>" +
@@ -197,8 +202,13 @@
 				i++;
 			}
 			
-			document.getElementById("meetings").innerHTML = "";
-			$compile($($appointment).appendTo("#meetings"))($scope);
+			if(resultIdArray !== newIdArray){
+				document.getElementById("meetings").innerHTML = "";
+				$compile($($appointment).appendTo("#meetings"))($scope);
+				//alert('vernieuw');
+			}
+			
+			resultIdArray = newIdArray
 			
 			if(notifications > 0){
 				$('<div id="count"></div>').insertAfter('#notification');
