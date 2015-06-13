@@ -387,12 +387,8 @@
 				var articleId = "#id" + meetingId;
 				$(articleId).remove();
 				
-				if( !$.trim( $('#notifications').html() ).length ) {
-					//alert('hierna sluiten');
-					//myNavigator.pushPage('dashboard.html', { animation : 'fade' } );
-					//myNavigator.app.backHistory();
-				}else{
-					//alert('nog niet leeg');
+				if( $('#notifications').is(':empty') ) {
+					myNavigator.popPage();
 				}
 			},
 			error: function(data) {
