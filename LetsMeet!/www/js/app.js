@@ -139,8 +139,9 @@
 					locatieString = locatieString.replace(')','');
 					
 					var location = 'onclick="window.open(\'geo:\'+\'' +locatieString+'\', \'_system\')"';
-					var url = 'onclick="window.open(\'\'+\'' +data[i].locUrl+'\', \'_system\')"';
-					var phone = 'onclick="window.open(\'tel:\'+\'' +data[i].locTel+'\', \'_system\')"';
+					var url = 'onclick="window.open(\'\'+\'http://dannycoenen.nl/app/letsmeet/calender.php?id='+data[i].id+'\', \'_system\')"';
+					var agenda = 'onclick="window.open(\'\'+\'' +data[i].locUrl+'\', \'_system\')"';
+					var phone = 'onclick="window.open(\'tel:\'+\'' +data[i].locTel+'\', \'_system\')"'; 
 					var remove = 'ng-click="removeResult(' + data[i].id + ')"';
 					//alert(location);
 					
@@ -195,6 +196,9 @@
 									"<ons-button class='btn removeBtn' " + remove + ">" +
 										"<span class='icon'>&#xf00d;</span>" +
 									"</ons-button>" +
+									"<div class='meta'>" +
+										"<a class='calender' href='#' " + url + ">Toevoegen aan agenda</a>" +
+									"</div>" +
 								"</div>" +
 								"<div class='clear'></div>" +
 							"</article>";

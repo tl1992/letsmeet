@@ -263,6 +263,7 @@ header.headerImage .roundBtn{
 }
 #container .removeBtn{background:#f23838;}
 #container .removeBtn:hover{background:#f23838;}
+#container .calender {text-transform: uppercase; text-align: center; margin-top: 10px; display: block; text-decoration: none; color: #bcbcbc;}
 .roundBtn {
 	background: #df823d;
 	padding: 15px 25px;
