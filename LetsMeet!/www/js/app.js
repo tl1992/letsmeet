@@ -88,7 +88,7 @@
 	  
 	var resultIdArray = "";
 	intervalFunction();
-	$interval(intervalFunction, 5000);
+	$interval(intervalFunction, 3000);
 	
 	$scope.removeResult = function(meetingId){
 		$.ajax({
@@ -110,6 +110,8 @@
 		var myName = localStorage.getItem("name");
 		var myPhone = localStorage.getItem("phone");
 		
+		var $appointment = "";
+		
 		$.ajax({
 		type: "GET",
 		url: "http://dannycoenen.nl/app/letsmeet/check.php?name=" + myName + "&phone=" + myPhone,
@@ -118,7 +120,6 @@
 			
 			$('#count').remove();
 			var notifications = 0;
-			var $appointment = "";
 			var newIdArray = "";
 			
 			for (var i = 0; i < data.length;) {
@@ -202,10 +203,15 @@
 				i++;
 			}
 			
+			if($appointment == ""){
+				document.getElementById("meetings").innerHTML = "<article class='block'>Je hebt geen geplande afspraken</article>";
+			}
+			
 			if(resultIdArray !== newIdArray){
-				document.getElementById("meetings").innerHTML = "";
-				$compile($($appointment).appendTo("#meetings"))($scope);
-				//alert('vernieuw');
+				if($appointment !== ""){
+					document.getElementById("meetings").innerHTML = "";
+					$compile($($appointment).appendTo("#meetings"))($scope);
+				}
 			}
 			
 			resultIdArray = newIdArray
@@ -217,7 +223,7 @@
 			
 		},
 		error: function(data) {
-			//alert("ERROR");
+			document.getElementById("meetings").innerHTML = "<article class='block'>Je hebt geen geplande afspraken</article>";
 			$('#count').remove();
 		}
 		});
@@ -279,20 +285,19 @@
 						$compile($appointment)($scope);
 						
 						$scope.meetingId = data[i].id;
-						
-					
-							
-						
+	
 				}
 			}
 			i++;
 				
 		}
-	
+		if($appointment == null){
+			document.getElementById("notifications").innerHTML = "<article class='block'>Geen nieuwe meldingen gevonden</article>";
+		}
 		
 	},
 	error: function(data) {
-		alert("Geen nieuwe meldingen gevonden");
+		document.getElementById("notifications").innerHTML = "<article class='block'>Geen nieuwe meldingen gevonden</article>";
 	}
 	});
 	
@@ -353,7 +358,7 @@
 						var articleId = "#id" + meetingId;
 						$(articleId).remove();
 						if( $('#notifications').is(':empty') ) {
-							alert('hierna sluiten');
+							myNavigator.popPage();
 						}
 					},
 					error: function(data) {
