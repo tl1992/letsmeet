@@ -346,9 +346,11 @@
 						alert('Uitnodiging geaccepteerd');
 						var articleId = "#id" + meetingId;
 						$(articleId).remove();
+						
 						if( $('#notifications').is(':empty') ) {
-							alert('hierna sluiten');
+							myNavigator.popPage();
 						}
+						
 					},
 					error: function(data) {
 						alert("ERROR");
