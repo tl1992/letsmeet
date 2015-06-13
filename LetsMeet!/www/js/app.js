@@ -285,7 +285,6 @@
 						
 				}
 			}
-			alert(data[1]); 
 			i++;
 				
 		}
@@ -353,11 +352,9 @@
 						alert('Uitnodiging geaccepteerd');
 						var articleId = "#id" + meetingId;
 						$(articleId).remove();
-						
 						if( $('#notifications').is(':empty') ) {
-							myNavigator.popPage();
+							alert('hierna sluiten');
 						}
-						
 					},
 					error: function(data) {
 						alert("ERROR");
