@@ -165,9 +165,9 @@
 									"<img width='40' src='"+ data[i].locIcon +"'/>" +
 								"</div>" +
 								"<div class='right'>" +
-									"<h1>" + friendName + "</h1>" +
+									"<h1>" + data[i].locName + "</h1>" +
 									"<div class='meta' style='display: block;'>" +
-										data[i].locName +
+										friendName +
 									"</div>" +
 									"<div class='meta'>" +
 										"<span class='icon'>&#xf041;</span>" +
@@ -279,10 +279,17 @@
 						$compile($appointment)($scope);
 						
 						$scope.meetingId = data[i].id;
+						
+					
+							
+						
 				}
 			}
+			alert(data[1]); 
 			i++;
+				
 		}
+	
 		
 	},
 	error: function(data) {
