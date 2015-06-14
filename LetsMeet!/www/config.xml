@@ -28,8 +28,6 @@
   <gap:plugin name="org.apache.cordova.media"/>
   <gap:plugin name="org.apache.cordova.network-information"/>
   <gap:plugin name="org.apache.cordova.splashscreen"/>
-  <gap:plugin name="com.simonmacdonald.cordova.plugins.TelephoneNumber"/>
-
   <icon src="img/icon.png" gap:role="default"/> 
   <icon src="www/res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi"/>
   <icon src="www/res/icon/android/icon-48-mdpi.png" gap:platform="android" gap:qualifier="mdpi"/>
@@ -46,9 +44,6 @@
   <gap:splash src="www/res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
   <gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
   <gap:splash src="www/res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone"/>
-  <feature name="TelephoneNumber">
-        <param name="android-package" value="com.simonmacdonald.cordova.plugins.TelephoneNumber" />
-    </feature>
   <access origin="*"/>
   <access origin="http://dannycoenen.nl"/>
   <plugin name="cordova-plugin-whitelist" version="1"/>
