@@ -63,10 +63,10 @@ body {
 	font-family: 'roboto_condensedregular' !important;
 }
 
-h1{ font-size: 20px; color:  #df823d; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
-h2{ font-size: 18px; color:  #df823d; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
-h3{ font-size: 16px; color:  #df823d; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
-h4{ font-size: 14px; color:  #df823d; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
+h1{ font-size: 20px; color:  #FF9800; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
+h2{ font-size: 18px; color:  #FF9800; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
+h3{ font-size: 16px; color:  #FF9800; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
+h4{ font-size: 14px; color:  #FF9800; margin-bottom: 10px; text-transform: uppercase; font-family: 'roboto_condensedregular';}
 
 .error					{background: #ffbaba; border: 1px solid #d8000c; color: #d8000c; padding: 15px; margin-bottom: 20px;}
 .succes					{background: #dff2bf; border: 1px solid #4f8a10; color: #4f8a10; padding: 15px; margin-bottom: 20px;} 
@@ -75,7 +75,7 @@ h4{ font-size: 14px; color:  #df823d; margin-bottom: 10px; text-transform: upper
 .img-responsive 	{max-width: 100%;}
 
 a { 
-	color: #f29038;
+	color: #F57C00;
 }
 a:hover {
 	text-decoration: none;
@@ -88,7 +88,7 @@ a:hover {
     margin: 10px 5px 0 0;
   }
 .navigation-bar {
-	background: #f29038;
+	background: #F57C00;
 	height: 55px;
 	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.6);
 	-moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.6);
@@ -135,7 +135,7 @@ a:hover {
 	width:12px; height:10px; padding:2px 0 0 0;
 	border-radius: 10px; background:#FFEB3B;
 	font-size:10px; text-align:center;
-	color:#f29038;
+	color:#F57C00;
 }
 
 .navigation-bar nav {
@@ -245,7 +245,7 @@ header.headerImage .roundBtn{
 	display: block;
 	font-size: 16px;
 	color: #fff;
-	background: #f29038;
+	background: #FF9800;
 	border: 0;
 	width: auto;
 	padding:10px 0px;
@@ -259,13 +259,13 @@ header.headerImage .roundBtn{
 	line-height: 18px;
 }
 #container .btn:hover {
-	background: #f29038;
+	background: #F57C00;
 }
 #container .removeBtn{background:#f23838;}
 #container .removeBtn:hover{background:#f23838;}
 #container .calender {text-transform: uppercase; text-align: center; margin-top: 10px; display: block; text-decoration: none; color: #bcbcbc;}
 .roundBtn {
-	background: #df823d;
+	background: #FF9800;
 	padding: 15px 25px;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -276,7 +276,7 @@ header.headerImage .roundBtn{
 	 border: none;
 }
 .roundBtn:hover {
-	background: #f29038;
+	background: #F57C00;
 	color: #fff;
 }
 
@@ -296,7 +296,7 @@ header.headerImage .roundBtn{
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
-	border-bottom: 3px solid #ffb879;
+	border-bottom: 3px solid #FF9800;
 }
 
 #container .centerContent{
@@ -403,7 +403,7 @@ header.headerImage .roundBtn{
 	font-family: arial, verdana; 
 	font-size: 16px;
 	color: #fff;
-	background: #f29038;
+	background: #F57C00;
 	border: 0;
 	width: auto;
 	padding:10px 0px;
@@ -429,7 +429,7 @@ header.headerImage .roundBtn{
 .custom-file-input::before {
   content: 'Selecteer een Photo Sphere';
   display: inline-block;
-  background: #f29038;
+  background: #F57C00;
   border-radius: 2px;
 	padding:10px 0px;
 	width: 100%;
