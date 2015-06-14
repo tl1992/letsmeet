@@ -25,7 +25,7 @@ In deze app wordt gebruik gemaakt van de volgende functionaliteiten:
  * `In app notifications` - Laten zien wanneer je een inkomend afspraak verzoek hebt gekregen.
 
  ## Schermen
-  * `Splashscreen` - Het splashscreen is enkele seconden zichtbaar wanneer je de app opstart. Tijdens dit scherm wordt de locatie van de gebruike opgehaald.
+ * `Splashscreen` - Het splashscreen is enkele seconden zichtbaar wanneer je de app opstart. Tijdens dit scherm wordt de locatie van de gebruike opgehaald.
  * `Registreren / eenmalige login` - Je moet eenmalig registreren. De volgende keren wordt je automatisch ingelogd.
  * `Afspraken overzicht` - Een overzicht van de afspraken die je op dat moment hebt ingepland.
  * `Afspraken toevoegen` - Het toevoegen van een afspraak.
